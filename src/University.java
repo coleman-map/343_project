@@ -1,13 +1,18 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 public class University {
-	
+	Scanner in = new Scanner(System.in);
 	/**
 	 * A class for representing a different
 	 */
 	
 	private String uniName;
 	private List<College> colleges;
+	private TreeMap<Integer, Person> people;
 	private int numCol;
 	/**
 	 * Default constructor method
@@ -27,8 +32,6 @@ public class University {
 	 * 
 	 * Inputs:
 	 *	uniName - name of the university
-	 *	colleges - list of all colleges in the university
-	 *	numCol - number of colleges in the university
 	 *	
 	 * Output: none
 	 * 
@@ -36,9 +39,10 @@ public class University {
 	 * 
 	 * Exception: none
 	 */
-	University(String uniName, List<College> colleges, int numCol) {
+	University(String uniName, List<College> colleges, TreeMap<Integer, Person> people,int numCol) {
 		this.uniName = uniName;
-		this.colleges = colleges;
+		this.colleges = new ArrayList<College>(colleges);
+		this.people = new TreeMap<Integer, Person>(people);
 		this.numCol = numCol;
 	}
 	
@@ -111,8 +115,7 @@ public class University {
 	/**
 	 * Adds college to university
 	 * 
-	 * Inputs:
-	 * 	col - new college to be added
+	 * Inputs: none
 	 * 
 	 * Outputs: none
 	 * 
@@ -121,9 +124,22 @@ public class University {
 	 * Exception: 
 	 * 	InvalidParamter - college already exists
 	 */
-	public void addCol(College col) {
-		colleges.add(col);
-		numCol++;
+	public void addCol() { //Modified by Juan
+		if(numCol == 10){
+			System.out.println("Maximum Colleges Reached!");
+		}else{
+			System.out.print("Enter name of College: ");
+			String name = in.nextLine();
+			for(College c: colleges){
+				if((c.getColName()).equalsIgnoreCase(name)){
+					System.out.println("College already exists!");
+					return;
+				}
+			}
+			colleges.add(new College(name));
+			numCol++;
+		}
+		return;
 	}
 	
 	/**
@@ -139,8 +155,13 @@ public class University {
 	 * Exception:
 	 * 	InvalidParameter - college does not exist
 	 */
-	public void delCol(College col) {
-		colleges.remove(col);
+	public void delCol() {
+		if(numCol == 0){
+			System.out.println("No Colleges Exist.");
+		}else{
+			
+		}
+		//colleges.remove(col);
 		numCol--;
 	}
 	
@@ -173,7 +194,29 @@ public class University {
 	 * Exception: none
 	 */
 	public void uniMenu() {
-		System.out.println("1. Create University\n 2. Add College \n 3. Remove College \n 4. View Colleges \5. Exit");
+		int choice;
+		System.out.println("UNIVERSITY MENU \n1. Change University Name\n 2. Add College \n 3. Remove College \n 4. View Colleges \n5. Edit College \n6. Exit");
+		choice = in.nextInt();
+		
+		if(choice == 1){
+			System.out.print("Enter new name: ");
+			this.uniName = in.next();
+		}else if(choice == 2){
+			addCol();
+		}else if(choice == 3){
+			delCol();
+		}
+		
 		//IDK IF I NEED TO DO A DO WHILE HERE OR IF WE DO THAT IN MAIN! 
+	}
+
+	public Person findPerson(int id) {
+		for(Map.Entry<Integer, Person> entry: people.entrySet()){
+			if(entry.getKey() == id){
+					return entry.getValue();
+			}
+		}
+		System.out.println("Incorrect ID number. Please try again.\n");
+		return null;
 	}
 }

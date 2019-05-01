@@ -40,11 +40,9 @@ public class College {
 	 * 
 	 * Exception: none
 	 */
-	College(String colName, List<Department> departments, int numDep, Employee dean) {
+	College(String colName) {
 		this.colName = colName;
-		this.departments = departments;
-		this.numDep = numDep;
-		this.dean = dean;
+		this.dean = null;
 	}
 	
 	/**
@@ -200,6 +198,10 @@ public class College {
 		for (Department d : departments) {
 			System.out.println(d);
 		}
+	}
+	
+	public String toString(){
+		return String.format("%-6s  %-19s %16s",  , "Name", "Middle Intial");
 	}
 	
 	/**
