@@ -1,6 +1,8 @@
+import java.util.Scanner;
 
 public class Person {
-
+	Scanner in = new Scanner(System.in);
+	
 	/**
 	 * Employee class builds outline of a Person
 	 * @author Malik
@@ -131,6 +133,24 @@ public class Person {
 		 */
 		public int getID(){
 			return ID;	
+		}
+		
+		public void createPerson(int id){
+			System.out.println("Enter first name: ");
+			this.firstName = in.next();
+			
+			System.out.println("Enter last name: ");
+			this.lastName = in.next();
+			
+			System.out.println("Enter middle initial: ");
+			this.midIn = in.next();
+			
+			this.ID = id;
+			
+		}
+		
+		public String toString(){
+			return "\n" + ID +  " " + firstName + " " + lastName + " " + midIn; 
 		}
 }
 	
