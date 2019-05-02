@@ -66,4 +66,46 @@ public class Validation {
 		}
 		return num;
 	}
+	public String validateChar(String userinput) //function to make sure user inputs a character not a digit
+    {
+         Scanner input = new Scanner(System.in); 
+       int inputlength = userinput.length(); 
+       int i = 0;
+        while (inputlength == 0) 
+        {
+            System.out.println("Invalid Input");
+            System.out.println("Please Try Again");
+            userinput =input.nextLine();
+           inputlength = userinput.length();
+
+        }
+        while (i < inputlength) 
+        {
+          // this checks if user input only a character and should only be Y/y or N/n to exit the loop
+            if(!(Character.isLetter(userinput.charAt(i)) && (userinput.charAt(i) == 'Y'&& userinput.length() == 1 )||
+            		(userinput.charAt(i) == 'y'&& userinput.length() == 1 ) || (userinput.charAt(i) == 'n'&& userinput.length() == 1 )|| 
+            				(userinput.charAt(i) == 'N'&& userinput.length() == 1 )))
+            {
+                 System.out.println("\nInvalid Input" + "\nPlease Try Again"); 
+                userinput=input.nextLine(); 
+           inputlength = userinput.length(); 
+           i =0;
+           userinput.charAt(i); }
+            else
+            {
+                i++; 
+            }
+            
+            while(inputlength == 0) 
+            {
+            System.out.println("Invalid Input" + "\nPlease Try Again");
+            userinput =input.nextLine();
+           inputlength = userinput.length();
+            }        
+        } 
+       
+        
+        return userinput;
+        }
+     
 }
