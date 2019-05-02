@@ -1,4 +1,4 @@
-
+package diyUniversity;
 
 import java.util.List;
 
@@ -40,9 +40,11 @@ public class College {
 	 * 
 	 * Exception: none
 	 */
-	College(String colName) {
+	College(String colName, List<Department> departments, int numDep, Employee dean) {
 		this.colName = colName;
-		this.dean = null;
+		this.departments = departments;
+		this.numDep = numDep;
+		this.dean = dean;
 	}
 	
 	/**
@@ -160,8 +162,14 @@ public class College {
 	 * 	InvalidParamter - department already exists
 	 */
 	public void addDep(Department dep) {
-		departments.add(dep);
-		numDep++;
+		if (numDep < 30 && !departments.contains(dep)) {
+			departments.add(dep);
+			numDep++;
+			System.out.println("Department Added!");
+		} else {
+			System.out.println("Cannot add department!");
+		}
+
 	}
 	
 	
@@ -179,8 +187,37 @@ public class College {
 	 * 	InvalidParameter - department does not exist
 	 */
 	public void delDep(Department dep) {
-		departments.remove(dep);
-		numDep--;
+		if (departments.contains(dep)) {
+			departments.remove(dep);
+			numDep--;
+			System.out.println("Department Removed!");
+		} else {
+			System.out.println("Department doesn't exist!");
+		}
+
+	}
+	
+	/**
+	 * Edits the department
+	 * 
+	 * Inputs: Department department, String newName, Employee newDean
+	 * 
+	 * Outputs: none
+	 * 
+	 * Return Value: none
+	 * 
+	 * Exception: department doesnt exist
+	 */
+	
+	public void editDep(Department dep, String newName, Employee dean) {
+		if (departments.contains(dep)) {
+			dep.setDepName(newName);
+			dep.setChair(dean);
+			System.out.println("Department Edited!");
+		} else {
+			System.out.println("Department doesn't exist!");
+		}
+
 	}
 	
 	/**
@@ -200,8 +237,8 @@ public class College {
 		}
 	}
 	
-	public String toString(){
-		return String.format("%-6s  %-19s %16s",  , "Name", "Middle Intial");
+	public String toString() {
+		return String.format("%-6s  %-19s %16s", "Name", "Middle Intial");
 	}
 	
 	/**
@@ -216,7 +253,7 @@ public class College {
 	 * Exception: none
 	 */
 	public void colMenu() {
-		System.out.println("1. Create College\n 2. Add Department \n 3. Remove Department \n 4. View Departments \5. Exit");
+		System.out.println("1. Add Department \n2. Remove Department \n3. View Departments \4. Exit");
 		//IDK IF I NEED TO DO A DO WHILE HERE OR IF WE DO THAT IN MAIN! 
 	}
 
