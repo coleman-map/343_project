@@ -150,8 +150,10 @@ public class Person {
 		}
 		
 		public String toString(){
-			return "\n" + ID +  " " + firstName + " " + lastName + " " + midIn; 
+			return String.format("%-10s %-15s %-15s %-20s", ID, firstName,  lastName, midIn);
 		}
+		
+	
 }
 	
 
