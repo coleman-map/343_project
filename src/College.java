@@ -1,9 +1,11 @@
-package diyUniversity;
 
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class College {
-	
+	Scanner in = new Scanner(System.in);
 	/**
 	 * A class for representing a college in the university
 	 */
@@ -11,7 +13,7 @@ public class College {
 	private String colName;
 	private List<Department> departments;
 	private int numDep;
-	private Employee dean;
+	private Person dean;
 	/**
 	 * Default constructor method
 	 * 
@@ -23,7 +25,17 @@ public class College {
 	 * 
 	 * Exception: none
 	 */
-	College() {}
+	College(){
+		this.colName = "";
+		this.dean = null;
+		this.numDep = 0;
+	}
+	
+	public College(String name){
+		this.colName = name;
+		this.dean = null;
+		this.numDep = 0;
+	}
 	
 	/**
 	 * Loaded constructor method
@@ -40,11 +52,10 @@ public class College {
 	 * 
 	 * Exception: none
 	 */
-	College(String colName, List<Department> departments, int numDep, Employee dean) {
+	College(String colName, List<Department> departments, int numDep, Person dean){
 		this.colName = colName;
-		this.departments = departments;
-		this.numDep = numDep;
 		this.dean = dean;
+		this.departments = new ArrayList<Department>(departments);
 	}
 	
 	/**
@@ -126,7 +137,7 @@ public class College {
 	 *
 	 * Exception: none
 	 */
-	public Employee getDean() {
+	public Person getDean() {
 		return dean;
 	}
 	
@@ -143,7 +154,7 @@ public class College {
 	 * Exception: none
 	 * 
 	 */
-	public void setDean(Employee dean) {
+	public void setDean(Person dean) {
 		this.dean = dean;
 	}
 	
@@ -162,14 +173,8 @@ public class College {
 	 * 	InvalidParamter - department already exists
 	 */
 	public void addDep(Department dep) {
-		if (numDep < 30 && !departments.contains(dep)) {
-			departments.add(dep);
-			numDep++;
-			System.out.println("Department Added!");
-		} else {
-			System.out.println("Cannot add department!");
-		}
-
+		departments.add(dep);
+		numDep++;
 	}
 	
 	
@@ -187,37 +192,8 @@ public class College {
 	 * 	InvalidParameter - department does not exist
 	 */
 	public void delDep(Department dep) {
-		if (departments.contains(dep)) {
-			departments.remove(dep);
-			numDep--;
-			System.out.println("Department Removed!");
-		} else {
-			System.out.println("Department doesn't exist!");
-		}
-
-	}
-	
-	/**
-	 * Edits the department
-	 * 
-	 * Inputs: Department department, String newName, Employee newDean
-	 * 
-	 * Outputs: none
-	 * 
-	 * Return Value: none
-	 * 
-	 * Exception: department doesnt exist
-	 */
-	
-	public void editDep(Department dep, String newName, Employee dean) {
-		if (departments.contains(dep)) {
-			dep.setDepName(newName);
-			dep.setChair(dean);
-			System.out.println("Department Edited!");
-		} else {
-			System.out.println("Department doesn't exist!");
-		}
-
+		departments.remove(dep);
+		numDep--;
 	}
 	
 	/**
@@ -237,9 +213,10 @@ public class College {
 		}
 	}
 	
-	public String toString() {
-		return String.format("%-6s  %-19s %16s", "Name", "Middle Intial");
+	public String toString(){
+		return String.format("%-30s %-25s", colName,  numDep);
 	}
+	
 	
 	/**
 	 * Menu to edit college attributes
@@ -253,8 +230,31 @@ public class College {
 	 * Exception: none
 	 */
 	public void colMenu() {
-		System.out.println("1. Add Department \n2. Remove Department \n3. View Departments \4. Exit");
-		//IDK IF I NEED TO DO A DO WHILE HERE OR IF WE DO THAT IN MAIN! 
+		int choice = 0;
+		
+		do{
+			System.out.println("1. Edit College Name"
+					+ "\n2. Assign New Dean"
+					+ "\n3. Add Department "
+					+ "\n4. Remove Department "
+					+ "\n5. View Departments "
+					+ "\n6. Exit"
+					+ "\nEnter here: "); 
+			choice = Integer.parseInt(in.nextLine());
+			
+			if(choice == 1){
+			
+			}else if(choice == 3){
+
+			}else if(choice == 4){
+
+			}else if(choice == 5){
+
+			}else if(choice == 6){
+				return;
+			}
+	
+		}while(choice != 6);
 	}
 
 }
