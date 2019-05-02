@@ -1,0 +1,60 @@
+// THIS IS THE CLASS VALIDATION
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Validation {
+	
+	// if the input expected is an integer and the user inputs something else, the program
+	// will ask the user to input an integer as many times as necessary
+	public int validate_int (String validate) {
+		Scanner reader = new Scanner(System.in);
+		boolean bool= false;
+		int num=0;
+		// if the user does not enter anything the program will also display a message
+		while(validate.isEmpty()) {
+			System.out.println(("Invalid output, the value has to be an integer, not empty,"
+					+ " try again"));
+			validate = reader.nextLine();
+		}
+		while (!bool) {
+			try {
+				
+				num = Integer.parseInt(validate);
+				bool = true;
+				
+			}
+			catch (Exception e){
+				
+				System.out.println("Invalid output, change char/string to be an integer, try again;");
+				validate = reader.nextLine();
+				bool = false;	
+			}
+		}
+		return num;
+	}
+		
+	// same logic as validate_int but applied to a double
+	public double validate_double (String validate) {
+		Scanner reader = new Scanner(System.in);
+		boolean bool= false;
+		double num=0.0;
+		while(validate.isEmpty()) {
+			System.out.println(("Invalid output, the value has to be a double, try again;"));
+			validate = reader.nextLine();
+		}
+		while (!bool) {
+			try {
+				
+				num = Double.parseDouble(validate);
+				bool = true;
+				
+			}
+			catch (Exception e){
+				
+				System.out.println("Invalid argument, enter a double, try again");
+				validate = reader.nextLine();
+				bool = false;
+			}
+		}
+		return num;
+	}
+}
