@@ -1,4 +1,13 @@
 // THIS IS THE CLASS VALIDATION
+
+//How it works
+//All the inputs are read as strings (foubles and ints)
+//Then if the input can be converted into an integer or double it is converted as desired, otherwise (the input is not an int or double) 
+// it makes the user have to re-enter values until the input can be converted into an in ot double
+//Example:
+//System.out.println("Enter the index");
+//String check_s=reader.nextLine();
+//int check = validate.validate_int(check_s);
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Validation {
