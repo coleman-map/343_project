@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class University extends Person {
+public class University {
 	Scanner in = new Scanner(System.in);
 	/**
 	 * A class for representing a different
@@ -40,7 +40,7 @@ public class University extends Person {
 	 * 
 	 * Exception: none
 	 */
-	University(String uniName, List<College> colleges, TreeMap<Integer, Person> people,int numCol) {
+	University(String uniName, List<College> colleges, TreeMap<Integer, Person> people) {
 		this.uniName = uniName;
 		this.colleges = new ArrayList<College>(colleges);
 		this.people = new TreeMap<Integer, Person>(people);
@@ -238,9 +238,6 @@ public class University extends Person {
 		return false;
 	}
 	
-	/**
-	 * Add a person
-	 */
 	public void addPerson(){
 		int choice;
 		do{
@@ -253,154 +250,25 @@ public class University extends Person {
 			choice = Integer.parseInt(in.nextLine());
 			
 			if(choice == 1){
-			Student	s= stud();
-			people.put(s.getID(), s);
-				
-			}else if(choice == 2){
-			Professor p = prof();
-			people.put(p.getID(), p);
-			
-			}else if(choice == 3){
-			Admin a = admin();
-			people.put(a.getID(), a);
-				
-			}else if(choice == 4){
-			Employee e = Employ();
-			people.put(e.getID(), e);
-			}
-		}while(choice != 5);
-			
-	}
-	
-	
-	/**
-	 * Delete a person
-	 */
-	public void removePerson(){
-		int choice;
-		int ID;
-		Person p;
-		do{
-			System.out.print("\n1. Delete a Student"
-					+ "\n2. Delete a Professor"
-					+ "\n3. Delete a Admin"
-					+ "\n4. Delete a Employee"
-					+ "\n5. Exit"
-					+ "\nEnter here: ");
-			choice = Integer.parseInt(in.nextLine());
-			
-			if(choice == 1){
-				
-				displayStuds();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				p = findPerson(ID);
-				people.remove(p.getID());
-			
-				
-			}else if(choice == 2){
-				
-				displayProfs();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				 p = findPerson(ID);
-				people.remove(p.getID());
-			
-			}else if(choice == 3){
-			
-			
-			displayAdmins();
-			System.out.println("Enter the ID");
-			ID = Integer.parseInt(in.nextLine());
-			 p = findPerson(ID);
-			people.remove(p.getID());
-			
-			
-			
-			}else if(choice == 4){
-				
-				displayEmps();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				 p = findPerson(ID);
-				people.remove(p.getID());
-				
-			}
-		}while(choice != 5);
-			
-	}
-	
-	
-	
-	public void editingPerson(){
-		int choice;
-		int ID;
-		do{
-			System.out.print("\n1. Edit a Student"
-					+ "\n2. Edit a Professor"
-					+ "\n3. Edit a Admin"
-					+ "\n4. Edit a Employee"
-					+ "\n5. Exit"
-					+ "\nEnter here: ");
-			choice = Integer.parseInt(in.nextLine());
-			
-			if(choice == 1){
-				displayStuds();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				editPerson(findPerson(ID));
-				
-			}else if(choice == 2){
-				displayProfs();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				editPerson(findPerson(ID));
-			
-			}else if(choice == 3){
-				displayAdmins();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				editPerson(findPerson(ID));
-				
-			}else if(choice == 4){
-				displayEmps();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				editPerson(findPerson(ID));
-				
-			}
-		}while(choice != 5);
-			
-	}
-	
-	
-	
-	
-	
-	/**
-	 * Retrieves ID from user input
-	 * @return - ID
-	 */
-	public int giveID(){
-		
-		int given_ID = Integer.parseInt(in.nextLine()); 
-		
-		System.out.println("Enter ID of person you wish to delete: ");
-		
-		while(!people.containsKey(given_ID)) 
-		{
-		    System.out.println("ID given is invalid");
+				Student	s= stud();
+				people.put(s.getID(), s);
 
-			given_ID = Integer.parseInt(in.nextLine());
-		}
-		
-		
-		return given_ID; 
-		
+			}else if(choice == 2){
+				Professor p = prof();
+				people.put(p.getID(), p);
+
+			}else if(choice == 3){
+				Admin a = admin();
+				people.put(a.getID(), a);
+
+			}else if(choice == 4){
+				Employee e = Employ();
+				people.put(e.getID(), e);
+			}
+		}while(choice != 5);
+			
 	}
-	
-	
-	
+
 	
 	public Employee Employ() {
         Employee e = new Employee();
@@ -488,7 +356,100 @@ public class University extends Person {
 	}
 	
 	
+	public void removePerson(){
+		int choice;
+		int ID;
+		Person p;
+		do{
+			System.out.print("\n1. Delete a Student"
+					+ "\n2. Delete a Professor"
+					+ "\n3. Delete a Admin"
+					+ "\n4. Delete a Employee"
+					+ "\n5. Exit"
+					+ "\nEnter here: ");
+			choice = Integer.parseInt(in.nextLine());
+			
+			if(choice == 1){
+				
+				displayStuds();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				p = findPerson(ID);
+				people.remove(p.getID());
+			
+				
+			}else if(choice == 2){
+				
+				displayProfs();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				 p = findPerson(ID);
+				people.remove(p.getID());
+			
+			}else if(choice == 3){
+			
+			
+			displayAdmins();
+			System.out.println("Enter the ID");
+			ID = Integer.parseInt(in.nextLine());
+			 p = findPerson(ID);
+			people.remove(p.getID());
+			
+			
+			
+			}else if(choice == 4){
+				
+				displayEmps();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				 p = findPerson(ID);
+				people.remove(p.getID());
+				
+			}
+		}while(choice != 5);
+			
+	}
 	
+	public void editPerson(){
+		int choice;
+		int ID;
+		do{
+			System.out.print("\n1. Edit a Student"
+					+ "\n2. Edit a Professor"
+					+ "\n3. Edit a Admin"
+					+ "\n4. Edit a Employee"
+					+ "\n5. Exit"
+					+ "\nEnter here: ");
+			choice = Integer.parseInt(in.nextLine());
+			
+			if(choice == 1){
+				displayStuds();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				findPerson(ID).createPerson(ID);
+				
+			}else if(choice == 2){
+				displayProfs();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				findPerson(ID).createPerson(ID);
+			
+			}else if(choice == 3){
+				displayAdmins();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				findPerson(ID).createPerson(ID);
+				
+			}else if(choice == 4){
+				displayEmps();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				findPerson(ID).createPerson(ID);
+				
+			}
+		}while(choice != 5);
+			
+	}
 	
 	public College findCol(String name){
 		for(College c: colleges){
@@ -510,8 +471,7 @@ public class University extends Person {
 	}
 	
 	public void displayStuds(){
-		System.out.printf("%-10s %-15s %-15s %-5s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL");
-		System.out.println("");
+		System.out.printf("%-10s %-15s %-15s %-5s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL\n");
 		for(Map.Entry<Integer, Person> entry: people.entrySet()){
 			if(entry.getValue() instanceof Student){
 				System.out.println(entry.getValue());
@@ -520,8 +480,7 @@ public class University extends Person {
 	}
 	
 	public void displayAdmins(){
-		System.out.printf("%-10s %-15s %-15s %-19s %-14s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL", "SALARY");
-		System.out.println("");
+		System.out.printf("%-10s %-15s %-15s %-19s %-14s %-10s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL", "SALARY\n");
 		for(Map.Entry<Integer, Person> entry: people.entrySet()){
 			if(entry.getValue() instanceof Admin){
 				System.out.println(entry.getValue());
@@ -549,6 +508,98 @@ public class University extends Person {
 		}
 	}
 	
+//	public void displayAllCourses(){
+//		for(College c: colleges){
+//			for(Department d: c.getDepartments()){
+//				for(Major m: d.getMajors()){
+//					for(Course cor: m.getCourses()){
+//						System.out.println(cor);
+//					}
+//				}
+//			}
+//		}
+//	}
+//	
+//	public void displayAllMajors(){
+//		for(College c: colleges){
+//			for(Department d: c.getDepartments()){
+//				for(Major m: d.getMajors()){
+//					System.out.println(m);
+//				}
+//			}
+//		}
+//	}
+//	
+//	public Major findMajor(String name){
+//		for(College c: colleges){
+//			for(Department d: c.getDepartments()){
+//				for(Major m: d.getMajors()){
+//					if(m.getMjrName().equalsIgnoreCase(name)){
+//						return m;
+//					}
+//				}
+//			}
+//		}
+//		return null;
+//	}
+//	
+//	public boolean courseExists(String name){
+//		for(College c: colleges){
+//			for(Department d: c.getDepartments()){
+//				for(Major m: d.getMajors()){
+//					for(Course cor: m.getCourses()){
+//						if(cor.getCorName().equalsIgnoreCase(name)){
+//							return true;
+//						}
+//					}
+//				}
+//			}
+//		}
+//		return false;
+//	}
+//	
+//	public Course findCourse(String name){
+//		for(College c: colleges){
+//			for(Department d: c.getDepartments()){
+//				for(Major m: d.getMajors()){
+//					for(Course cor: m.getCourses()){
+//						if(cor.getCorName().equalsIgnoreCase(name)){
+//							return cor;
+//						}
+//					}
+//				}
+//			}
+//		}
+//		return null;
+//	}
+	
+//	public void assignProf(){
+//		String name;
+//		int id;
+//		Professor p;
+//		Course c;
+//		
+//		displayAllCourses();
+//		do{
+//		do{
+//			System.out.println("Enter course name:");
+//			name = in.nextLine();
+//		}while(findCourse(name) == null || findCourse(name).getProf() != null);
+//		
+//		c = findCourse(name);
+//		
+//		do{
+//			System.out.print("Enter employee ID: ");
+//			id = Integer.parseInt(in.nextLine());
+//		}while(findPerson(id) == null || !(findPerson(id) instanceof Professor) || isDean(id) == true);
+//		
+//		p = (Professor) findPerson(id);
+//		
+//	}while(timeConflict(p, c) == false);
+//		
+//		
+//	}
+	
 	public void peopleMenu(){
 		int choice;
 		do{
@@ -571,7 +622,7 @@ public class University extends Person {
 			}else if(choice == 4){
 				displayEmps();
 			}else if(choice == 5){
-				editingPerson();
+				editPerson();
 			}
 		}while(choice != 6);
 			
@@ -661,14 +712,7 @@ public class University extends Person {
 
 			if(choice == 1){
 				System.out.print("Enter new name: ");
-				String g_uniName = in.nextLine();
-				while(g_uniName.length() > 60)
-				{
-					System.out.println("Character limit reached(60), Enter name again");
-					System.out.println();
-					g_uniName = in.nextLine();
-				}
-				this.uniName = g_uniName;
+				this.uniName = in.nextLine();
 			}else if(choice == 2){
 				collegeMenu();
 			}else if(choice == 3){
@@ -681,8 +725,6 @@ public class University extends Person {
 	
 	public static void main(String[] args) {
 		
-		
 	}
-	
 	
 }
