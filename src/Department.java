@@ -1,4 +1,3 @@
-  	
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,15 +26,38 @@ class Department {
             		Characteristics from the department as desired
            	Exception:
                 MissingParameter - if a parameter is not included
-				LimitMajors – if there is any intent of increasing the number of majors in the department over 30
+				LimitMajors – if there is any intent of increasing the number of majors in the department over 50
 				ParameterOutOfBoundaries – if any of the parameters character limit goes over the established maximum
     */
 	//, Employee depChair
 	public Department (String depName, ArrayList <Major> majors) {
 		this.depName = depName;
-		this.majors = majors;
+		if(majors.size()<maxMajors)
+			this.majors = majors;
+		else {
+			System.out.println("Too many majors for the department, the first 50 majors will be added");
+			ArrayList <Major>major_list=new ArrayList<Major>();
+			for (int i=0;i<maxMajors;i++)
+				major_list.add(majors.get(i));
+			this.majors=major_list;
+		}
 		//this.depChair = depChair;
 	}
+	/**
+	 * Department
+	 * 	Constructor
+	 * 	Input:
+	 * 		String depName-depName will contain in a string of characters the name of the department
+	 * Outputs:
+	 * 		None
+	 * Return Value:
+            		Characteristics from the department as desired
+           	Exception:
+                MissingParameter - if a parameter is not included
+				LimitMajors – if there is any intent of increasing the number of majors in the department over 30
+				ParameterOutOfBoundaries – if any of the parameters character limit goes over the established maximum
+	 * @param depName
+	 */
 	public Department (String depName) {
 		this.depName = depName;
 		this.majors = new ArrayList <Major>();
@@ -59,7 +81,7 @@ class Department {
 	}
 
 
-     /*
+     /**
 			getDepName
 				Gets the name of the Department
 			
@@ -117,7 +139,7 @@ class Department {
   	
  
 
-   	/*
+   	/**
 		getNumMjr
 		Gets the number of majors contained in a department
 		
@@ -133,6 +155,23 @@ class Department {
    	*/
     public int getNumMjr() {
     		return this.majors.size();
+    }
+    /**
+     * getMjrs
+     * Returns a list containing the majors in the department
+     * 
+     * Inputs: None
+     * 
+     * Outputs: None
+     * 
+     * Return Value:
+     * 
+     *
+     * @return Arraylist this.majors;
+     */
+    public ArrayList getMjrs() {
+    	return this.majors;
+    	
     }
     
     /**
@@ -157,73 +196,22 @@ class Department {
 		 		System.out.println("Major already exists!");
 		 	}
 	 }
-    
-    
-   	/*
-	deleteMjr
-	Deletes a major from the department
-	
-	Inputs:  	Major - The major that will be deleted
-	
-	Outputs: None
-	
-	ReturnValue: None
-	
-	Exception: ParameterNotIncluded – if the major inptted does not belong the department
-   	*/
-   	public void deleteMjr(Major major) {
-   		 	if (majors.contains(major)) {
-   		 		majors.remove(major);
-   		 		System.out.println("Major Removed!");
-   		 	} else {
-   		 		System.out.println("Major doesn't exist!");
-   		 	}
-   	 }
    	
-   	/*
-	editMjr
-	Edits a major from the department
-	
-	Inputs:  	Major - The major that will be deleted, majorName - the new name of the major
-	
-	Outputs: None
-	
-	ReturnValue: None
-	
-	Exception: ParameterNotIncluded – if the major inptted does not belong the department
-   	*/
-   	
-   	public void editMjr(Major major, String majorName) {
-   		 	if (majors.contains(major)) {
-   		 		//major.setMjrName(majorName);
-   		 		System.out.println("Major Edited!");
-   		 	} else {
-   		 		System.out.println("Major doesn't exist!");
-   		 	}
-   	 }
-   	
-   	 
-   	/*
-	   	displayMajors	Displays a list of the majors that belong to the department
-	
-	   	Inputs: None
-	   	
-	   	Outputs: A formatted list showing all the names from the majors in the department
-	
-	   	Return Value: None
-	   	           	   
-	   	Exception:  None
-   	*/
-   	
-   	
-   	public void displayMajors() {
-		for (Major m : majors) {
-			System.out.println(m);
-		}
-   	}
-      public void addMajor() {
-    	  String major_name="";
-    	  while (major_name.toLowerCase()!="exit") {
+   	/**
+   	 * addMajor
+   	 * Adds a major to the department
+   	 * 
+   	 * Inputs: None
+   	 * 
+   	 * Outputs: None
+   	 * 
+   	 * Return Value: None
+   	 * 
+   	 * Exception: major already exists 
+   	 */
+    public void addMajor() {
+  	  String major_name="";
+  	  while (major_name.toLowerCase()!="exit") {
 				System.out.println("Type the name of the major you want to include or exit to exit: ");
 				major_name= reader.nextLine(); 
 				
@@ -267,15 +255,44 @@ class Department {
 					
 			}//end of while (major_name.toLowerCase()!="exit")
 			
-      }
-      
-      public void displayMajor() {
-    	  for (int i=0;i<this.majors.size();i++)
-				System.out.println(this.majors.get(i).getName());
-      }
-      public void deleteMajor() {
-    	  displayMajor();
-    	  System.out.println("Input the name of the major you want to delete");
+    }
+    
+    
+   	/**
+	deleteMjr
+	Deletes a major from the department
+	
+	Inputs:  	Major - The major that will be deleted
+	
+	Outputs: None
+	
+	ReturnValue: None
+	
+	Exception: ParameterNotIncluded – if the major inputed does not belong the department
+   	*/
+   	public void deleteMjr(Major major) {
+   		 	if (majors.contains(major)) {
+   		 		majors.remove(major);
+   		 		System.out.println("Major Removed!");
+   		 	} else {
+   		 		System.out.println("Major doesn't exist!");
+   		 	}
+   	 }
+   	
+   	/**
+   	 * deleteMajor
+   	 * Deletes a major from the department
+   	 * 
+   	 * Inputs: None
+   	 * 
+   	 * Outputs: None
+   	 * 
+   	 * Return Value: None
+   	 * 
+   	 */
+   	public void deleteMajor() {
+  	  displayMajor();
+  	  System.out.println("Input the name of the major you want to delete");
 			String maj_delete=reader.nextLine();
 			boolean found=false;
 			for (int i=0;i<this.majors.size();i++) {
@@ -288,7 +305,79 @@ class Department {
 			}//end of for (int i=0;i<this.majors.size();i++)
 			if (!found) 
 				System.out.println("The major cant be deleted because it does not exist in this department");
+    }
+   	
+   	/**
+	editMjr
+	Edits a major from the department
+	
+	Inputs:  	Major - The major that will be deleted, majorName - the new name of the major
+	
+	Outputs: None
+	
+	ReturnValue: None
+	
+	Exception: ParameterNotIncluded – if the major inputted does not belong the department
+   	*/
+   	
+   	public void editMjr(Major major, String majorName) {
+   		 	if (majors.contains(major)) {
+   		 		//major.setMjrName(majorName);
+   		 		System.out.println("Major Edited!");
+   		 	} else {
+   		 		System.out.println("Major doesn't exist!");
+   		 	}
+   	 }
+   	
+   	 
+   	/**
+	   	displayMajors	Displays a list of the majors that belong to the department
+	
+	   	Inputs: None
+	   	
+	   	Outputs: A formatted list showing all the names from the majors in the department
+	
+	   	Return Value: None
+	   	           	   
+	   	Exception:  None
+   	*/
+   	
+   	
+   	public void displayMajors() {
+		for (Major m : majors) {
+			System.out.println(m);
+		}
+   	}
+   	
+   	
+    
+   	/**
+   	displayMajor	Displays a list of only the major names that belong to the department
+
+   	Inputs: None
+   	
+   	Outputs: A formatted list showing all the names from the majors in the department
+
+   	Return Value: None
+   	           	   
+   	Exception:  None
+	*/ 
+      public void displayMajor() {
+    	  for (int i=0;i<this.majors.size();i++)
+				System.out.println(this.majors.get(i).getName());
       }
+      
+     /**
+      * findMajor
+      * Using the major name, it return the major object
+      * Inputs: String _major_name - the name of the major
+      * 
+      * Outputs: None
+      * 
+      * Return Value: Major
+      * @param _major_name
+      * @return Major
+      */
       public Major findMajor (String _major_name) {
     	  String opt_chosen;
     	  boolean found=false;
@@ -308,6 +397,19 @@ class Department {
 			
 
       }
+      
+      /**
+       * changeMajorName
+       * It overwrites the name of the major as long as the major name is available
+       * 
+       * Inputs: Major current- The major that is going to have its name replaced
+       * 
+       * Outputs: A message explaining whether the major name is changed successfully or not
+       * 
+       * ReturnValue: None
+       * 
+       * @param Major current
+       */
       public void changeMajorName(Major current) {
     	  String opt_chosen="";
     	  boolean not_new=false;
@@ -335,11 +437,37 @@ class Department {
 //      }
       }
       
-      
+//      
+//      
+//      
+//      
+//      
+//      
+//      
+//      WE NEED TO IMPLEMENT THIS PART
+//      
+//      
+//      
+//      
+//      
+//      
+//      
+//      
+//      
       public void editMajorCourse() {
     	  
       }
-      
+      /**
+       * editMajorMenu
+       * This sub-menu allows to change the major name, open the menu of the major or going back to the Department menu
+       * 
+       * Inputs: None
+       * 
+       * Outputs: Menu
+       * 
+       * ReturnValue: None
+       *
+       */
       public void editMajorMenu() {
     	  boolean found=false;
     	  
@@ -371,10 +499,42 @@ class Department {
     		  }//end of if (opt_chosen_i==1)	
     	  }
     		  
-        
-    		  
-    
-    	/*
+      /**
+       * hasMajor
+       * hasMajor returns a boolean showing if the major belongs to the department
+       * 
+       * Inputs: String major- major is a string of characters representing the name of the major
+       * 
+       * Outputs: None
+       * 
+       *
+       *
+       * @param _major
+       * 
+       *  ReturnValue:
+       * @return true if major is in the department, false if major is not found in the department
+       */
+      public boolean hasMajor(String _major) {
+    	  for (int i=0;i<this.majors.size();i++) {
+    		  if (this.majors.get(i).getName().equalsIgnoreCase(_major))
+    			  return true;
+    	  }
+    	  return false;
+      }
+   /**
+    * toString
+    * 	Outputs the object Department in a formatted way
+    * 
+    * Inputs: None
+    * 
+    * Outputs: The Department name and Dean in charge 
+    * 
+    * ReturnValue: A String containing the Department name and Dean in charge  
+    */
+    public String toString() {
+    	return String.format("%-20s %-15s ", this.getDepName(),"Dean yet to be implemented");
+    }
+    	/**
 	    depMenu 
 	    Display the menu that contains the different actions that can be done regarding the department dynamics
 	
@@ -420,9 +580,5 @@ class Department {
 	}
 	
 }
-
-
-
-
 
 
