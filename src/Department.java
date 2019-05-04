@@ -113,11 +113,13 @@ class Department {
 			InvalidParameter – if the object is anything different from an employee profile
    	 * 
    	 */
-   	
+    
    	 public void setChair (Employee depChair) {
+   		
    		this.depChair = depChair;
    	}
-   	 
+   	
+   	
    	
            	
 
@@ -350,8 +352,20 @@ class Department {
 			System.out.println(m);
 		}
    	}
-   	
-   	
+   	/**
+   	 * getMajors
+   	 * 	returns a list of all the majors that belong to the department
+   	 * 
+   	 * Inputs: None
+   	 * 
+   	 * Outputs: None
+   	 * 
+   	 * Return Value: ArrayList containing all the majors in the department
+   	 * @return ArrayList
+   	 */
+   	public ArrayList getMajors() {
+   		return this.majors;
+   	}
     
    	/**
    	displayMajor	Displays a list of only the major names that belong to the department
@@ -439,26 +453,7 @@ class Department {
 //      }
       }
       
-//      
-//      
-//      
-//      
-//      
-//      
-//      
-//      WE NEED TO IMPLEMENT THIS PART
-//      
-//      
-//      
-//      
-//      
-//      
-//      
-//      
-//      
-      public void editMajorCourse() {
-    	  
-      }
+
       /**
        * editMajorMenu
        * This sub-menu allows to change the major name, open the menu of the major or going back to the Department menu
