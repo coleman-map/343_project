@@ -1,3 +1,5 @@
+package diyUniversity;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -117,7 +119,7 @@ class Major {
 			System.out.println("Max Courses Reached!");
 		}
 		
-   		in.close();
+   		
 		//
 	}
 
@@ -137,18 +139,43 @@ class Major {
 	Exception:
 		Invalid Parameter - courseName is not a valid name
 	*/	
+	
+	/*
+	displayCourses
+		Display a list of courses
+	
+	Inputs:
+		None
+	
+	Outputs:
+		String list of courses
+	
+	Return Value:
+		None
+	
+	Exception:
+	None 
+	*/
+	void displayCourses() {
+		for (Course c : courses) {
+			System.out.println(c.getName());
+		}
+	}
+	
 	String deleteCor() {
 		Scanner in = new Scanner(System.in);
+		displayCourses();
 		System.out.println("What course would you like to delete?");
 		String input1 = in.nextLine();
-		in.close();
 		for (Course c : courses) {
 			if (c.getName().equals(input1)) {
 				courses.remove(c);
 				return "Course Removed";
 			} 
 		}
+//		in.close();
 		return "Course Not Found!";
+
    	 }
 	
 	
@@ -248,34 +275,11 @@ class Major {
    	   			System.out.println("Exited.");
    	   		}
    		} while(!userInput.equals("7"));
-   		in.close();
    	}
 
    	
 
 
-	/*
-	displayCourses
-		Display a list of courses
-	
-	Inputs:
-		None
-	
-	Outputs:
-		String list of courses
-	
-	Return Value:
-		None
-	
-	Exception:
-	None 
-	*/
-	void displayCourses() {
-		System.out.println(courses.size());
-		for (Course c : courses) {
-			System.out.println(c);
-		}
-	}
 	
 	public String toString() {
 		return "hello";}
@@ -294,32 +298,41 @@ class Major {
 	*/
 	void mjrMenu() {
 		String input;
-		System.out.println("1. Add Course \n2. Delete Course \n3. Edit Course \n4. Quit");
 		Scanner in = new Scanner(System.in);
-		input = in.nextLine().trim();
 		do {
-			if (input.equals("1")) {
+			System.out.println("----------------------- \n1. Add Course \n2. Delete Course \n3. Edit Course \n4. Quit");
+			input = in.next();
+			if (input.equals("1")) 
+			{
 		   		addCor();
-			} else if (input.equals("2")) {
+			} 
+			else if (input.equals("2")) 
+			{
 				System.out.println(deleteCor());
-			} else if (input.equals("3")) {
+			} 
+			else if (input.equals("3")) 
+			{
+				Scanner a = new Scanner(System.in);
 				displayCourses();
 				System.out.println("What course would you like to edit?");
-				String cName = in.nextLine();
+				String cName = a.nextLine();
+				System.out.println(cName);
+				Boolean check = false;
+
 				for (Course c : courses) {
-					if (c.getName().equals(cName.trim())) {
-						System.out.println("here");						
+					if (c.getName().equals(cName)) {
+						check = true;	
 						editCor(c);
 						break;
 					} 
 				}
-			} else if (input.equals("4")) {
-				System.out.println("Thank you!");
+				if (!check) {
+					System.out.println("Course not found!");
+				}
 			}
-			
 		} while (!input.equals("4"));
-		in.close();
-		
 	}
 	
 }
+
+
