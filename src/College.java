@@ -13,7 +13,7 @@ public class College {
 	private String colName;
 	private ArrayList<Department> departments;
 	private int numDep;
-	//private Person dean;
+	private Person dean;
 	/**
 	 * Default constructor method
 	 * 
@@ -27,17 +27,19 @@ public class College {
 	 */
 	College(){
 		this.colName = "";
-		//this.dean = null;
-		//this.numDep = 0;
+		this.dean = null;
+		this.numDep = 0;
 		departments=new ArrayList <Department>();
 	}
 	
+	
 	public College(String name){
 		this.colName = name;
-		//this.dean = null;
-		//this.numDep = 0;
+		this.dean = null;
+		this.numDep = 0;
 		departments=new ArrayList <Department>();
 	}
+	
 	
 	/**
 	 * Loaded constructor method
@@ -55,10 +57,42 @@ public class College {
 	 * Exception: none
 	 */
 	//, Person dean
-	College(String colName, List<Department> departments, int numDep){
+	College(String colName, List<Department> departments, int numDep, Person dean){
 		this.colName = colName;
-		//this.dean = dean;
+		this.dean = dean;
 		this.departments = new ArrayList<Department>(departments);
+	}
+	/**
+	 * Gets dean of the college
+	 * 
+	 * Inputs: none
+	 * 
+	 * Outputs: 
+	 *	dean - dean of the college
+	 *
+	 * Return Value:
+	 *	@return - dean of college (Employee)
+	 *
+	 * Exception: none
+	 */
+	public Person getDean() {
+		return dean;
+	}
+	/**
+	 * Sets dean
+	 * 
+	 * Inputs:
+	 * 	dean - the dean of the college
+	 * 	
+	 * Outputs: none
+	 * 
+	 * Return Value: none
+	 * 
+	 * Exception: none
+	 * 
+	 */
+	public void setDean(Person dean) {
+		this.dean = dean;
 	}
 	
 	/**
@@ -389,6 +423,17 @@ public class College {
 		for(Department d:departments) {
 			if (d.getDepName().equalsIgnoreCase(_dep))
 				return true;
+		}
+		return false;
+	}
+	public boolean isDean(int id){
+		for(Department d:departments){
+			if(d.getChair() == null){
+				
+			}else if(d.getChair().getID() == id){
+				System.out.println("Employee is already dean of " + d.getDepName() + "!");
+				return true;
+			}
 		}
 		return false;
 	}
