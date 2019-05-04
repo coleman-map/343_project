@@ -197,7 +197,7 @@ class Major {
    	   		userInput = in.nextLine().trim();
    	   		if (userInput.equals("1")) {
    	   			System.out.println("What is the name of the course?"); 
-   	   			String name = in.next();
+   	   			String name = in.nextLine();
    	   			System.out.println("Old Name: " + c.getName());
    	   			c.setName(name);
    	   			System.out.println("New Name: " + c.getName());
@@ -300,16 +300,11 @@ class Major {
 		do {
 			System.out.println("----------------------- \n1. Add Course \n2. Delete Course \n3. Edit Course \n4. Quit");
 			input = in.next();
-			if (input.equals("1")) 
-			{
+			if (input.equals("1")) {
 		   		addCor();
-			} 
-			else if (input.equals("2")) 
-			{
+			} else if (input.equals("2")) {
 				System.out.println(deleteCor());
-			} 
-			else if (input.equals("3")) 
-			{
+			} else if (input.equals("3")) {
 				Scanner a = new Scanner(System.in);
 				displayCourses();
 				System.out.println("What course would you like to edit?");
@@ -327,6 +322,10 @@ class Major {
 				if (!check) {
 					System.out.println("Course not found!");
 				}
+			} else if (input.equals("4")) {
+				System.out.println("Quit");
+			} else {
+				System.out.println("Invalid Input");
 			}
 		} while (!input.equals("4"));
 	}
