@@ -1,13 +1,11 @@
-package diyUniversity;
-
 import java.util.List;
+import java.util.Scanner;
 
 class Major {
 	/* A class for a major in a department */
 	
 	private String mjrName;
 	private List<Course> courses;
-	private int numCor;
 
 
 	/*
@@ -25,10 +23,9 @@ class Major {
 	
 		Exception: None
 	*/
-	public Major(String mjrName, List<Course> courses, int numCor) {
+	public Major(String mjrName, List<Course> courses) {
 		this.mjrName = mjrName;
 		this.courses = courses;
-		this.numCor = numCor;
 	}
 
 
@@ -65,40 +62,6 @@ class Major {
 		return mjrName;
 	}
 
-
-	/*
-	getNumCor
-		Gets the number of courses
-	
-	Inputs: None
-	
-	Outputs: None
-	
-	Return Value: numCor - number of courses major has (int)
-	
-	Exception: None
-	*/
-	int getNumCor(){
-		return numCor;
-	}
-
-
-
-	/*
-	setNumCor
-		Sets the number of courses
-	
-	Inputs: numCor - the number of courses a class has
-	
-	Outputs: None
-	
-	Return Value: None
-	
-	Exception: Invalid Parameter - if numCor <= 0
-	*/
-	void setNumCor(int numCor) {
-		this.numCor = numCor;
-	}
 	
 	/*
 	addCor
@@ -116,14 +79,46 @@ class Major {
 	Exception:
 		Invalid Parameter - course already added
 	*/
-	void addCor(Course course) {
-	 	if (numCor < 100 & !courses.contains(course)) {
-	 		courses.add(course);
-	 		numCor--;
-	 		System.out.println("Course Added!");
-	 	} else {
-	 		System.out.println("Course already exists!");
-	 	}
+	void addCor() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Add Course");
+		if (courses.size() < 100) {
+			System.out.println("What is the name of the course?"); 
+	   		String name = in.nextLine();
+	   		for (Course c : courses) 
+	   		{
+	   			if (c.getName().equals(name)) {
+	   				System.out.println("Course Already Added!");
+	   				mjrMenu();
+	   				break;
+	   			}
+	   		}
+			System.out.println("What is the start time of the course?");
+	   		String sTime = in.nextLine();
+	   		System.out.println("What is the end time of the course?");
+		   	String eTime = in.nextLine();
+	   		System.out.println("What is the location of the course?");
+	   		String loc = in.nextLine();
+	   		System.out.println("What is the semester of the course?");
+	   		String sem = in.nextLine();
+	   		for (Course c : courses) {
+	   			if (c.getStartTime().equals(sTime) && c.getEndTime().equals(eTime) 
+	   					&& c.getLocation().equals(loc) && c.getSemester().equals(sem)) {
+	   				System.out.println("Time Conflicts Detected! \n Try Again!");
+	   				mjrMenu();
+	   				break;
+	   			}
+	   		}
+	   		System.out.println("What is the capacity of the course?");
+	   		Integer cap = in.nextInt();
+	   		courses.add(new Course(name, sTime, eTime, loc, sem, cap));
+	   		System.out.println("New Course Added!");
+		} else {
+			System.out.println("Max Courses Reached!");
+		}
+		
+   		in.close();
+		//
 	}
 
 	/*
@@ -141,16 +136,21 @@ class Major {
 	
 	Exception:
 		Invalid Parameter - courseName is not a valid name
-	*/
-	void deleteCor(Course course) {
-   		 	if (courses.contains(course)) {
-   		 		courses.remove(course);
-   		 		numCor--;
-   		 		System.out.println("Course Removed!");
-   		 	} else {
-   		 		System.out.println("Course doesn't exist!");
-   		 	}
+	*/	
+	String deleteCor() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("What course would you like to delete?");
+		String input1 = in.nextLine();
+		in.close();
+		for (Course c : courses) {
+			if (c.getName().equals(input1)) {
+				courses.remove(c);
+				return "Course Removed";
+			} 
+		}
+		return "Course Not Found!";
    	 }
+	
 	
    	/*
 	ediCourse
@@ -161,10 +161,94 @@ class Major {
 	
 	ReturnValue: None
 	
-	Exception: ParameterNotIncluded – if the major inputted does not belong the department
+	Exception: ParameterNotIncluded – if the major inputed does not belong the department
    	*/
-   	public void editMjr() {
-   		//WILL DO AFTER CREATING COURSE CLASS! 
+   	public void editCor(Course c) {
+   		String userInput;
+   		Scanner in = new Scanner(System.in);
+   		do {
+   			System.out.println("EDIT COURSE MENU \n ---------------- \n 1. Name  \n 2. Time \n 3. Location \n 4. Semester "
+   	   				+ "\n 5. PreRequistes \n 6. Capacity \n 7. Quit");
+   	   		userInput = in.nextLine().trim();
+   	   		if (userInput.equals("1")) {
+   	   			System.out.println("What is the name of the course?"); 
+   	   			String name = in.next();
+   	   			System.out.println("Old Name: " + c.getName());
+   	   			c.setName(name);
+   	   			System.out.println("New Name: " + c.getName());
+   	   		} else if (userInput.equals("2")) {
+   	   			System.out.println("What is the start time of the course?");
+   	   			String sTime = in.nextLine();
+   	   			System.out.println("What is the end of time of the course?");
+   	   			String eTime = in.nextLine();
+   	   			Boolean check = true;
+   		   		for (Course co : courses) {
+   		   			if (co.getStartTime().equals(sTime) && co.getEndTime().equals(eTime)
+   		   					&& co.getLocation().equals(c.getLocation()) && co.getSemester().equals(c.getSemester())) {
+   		   				check = false;
+   		   			}
+   		   		}
+   		   		if(check) {
+   	   	   			System.out.println("Old Start Time: " + c.getStartTime());
+   	   	   			c.setStartTime(sTime);
+   	   	   			System.out.println("New Start Time: " + c.getStartTime());
+	   	   			System.out.println("Old End Time: " + c.getEndTime());
+	   	   			c.setEndTime(eTime);
+	   	   			System.out.println("New Start Time: " + c.getEndTime());
+   		   		} else {
+   		   			System.out.println("Time Conflict!");
+   		   		}
+   
+   	   		} else if (userInput.equals("3")) {
+   	   			System.out.println("What is the location of the course?");
+   	   			String loc = in.nextLine();
+   	   			Boolean check = true;
+   		   		for (Course co : courses) {
+   		   			if (co.getStartTime().equals(c.getStartTime()) && co.getEndTime().equals(c.getEndTime())
+   		   					&& co.getLocation().equals(loc) && co.getSemester().equals(c.getSemester())) {
+   		   				check = false;
+   		   			}
+   		   		}
+   		   		if(check) {
+   	   	   			System.out.println("Old Location: " + c.getLocation());
+   	   	   			c.setLocation(loc);
+   	   	   			System.out.println("New Location: " + c.getLocation());
+   		   		} else {
+   		   			System.out.println("Location Conflict!");
+   		   		}
+   	   		} else if (userInput.equals("4")) {
+   	   			System.out.println("What is the semester of the course?");
+   	   			String sem = in.next();
+   	   			System.out.println("Old Semsester: " + c.getSemester());
+   	   			c.setSemester(sem);
+   	   			System.out.println("New Semester: " + c.getSemester());
+   	   		} else if (userInput.equals("5")) {
+   	   			System.out.println("What is the name of the preReq?");
+   	   			String preReq = in.nextLine();
+   	   			Boolean check = true;
+   	   			for(Course co : courses) {
+   	   				if(co.getName().equals(preReq)) {
+   	   					if (!c.getPre().contains(co)) {
+   	   						c.addPrereq(co);
+   	   					} 
+   	   				}
+   	   			}
+   	   			if (check) {
+   	   				System.out.println("Cannot add pre req!");
+   	   			} else {
+   	   				System.out.println("Pre Req added!");
+   	   			}
+   	   		} else if (userInput.equals("6")) {
+   	   			System.out.println("What is the capacity of the course?");
+   	   			Integer cap = in.nextInt();
+   	   			System.out.println("Old Capacity: " + c.getCap());
+   	   			c.setCap(cap);
+   	   			System.out.println("New Capacity: " + c.getCap());
+   	   		} else if(userInput.equals("7")) {
+   	   			System.out.println("Exited.");
+   	   		}
+   		} while(!userInput.equals("7"));
+   		in.close();
    	}
 
    	
@@ -187,13 +271,14 @@ class Major {
 	None 
 	*/
 	void displayCourses() {
+		System.out.println(courses.size());
 		for (Course c : courses) {
 			System.out.println(c);
 		}
 	}
 	
 	public String toString() {
-		return "hell0";}
+		return "hello";}
 	
 	/*
 	mjrMenu
@@ -207,8 +292,34 @@ class Major {
 	
 	Exceptions: None 
 	*/
-	void mjrMenu() {}
+	void mjrMenu() {
+		String input;
+		System.out.println("1. Add Course \n2. Delete Course \n3. Edit Course \n4. Quit");
+		Scanner in = new Scanner(System.in);
+		input = in.nextLine().trim();
+		do {
+			if (input.equals("1")) {
+		   		addCor();
+			} else if (input.equals("2")) {
+				System.out.println(deleteCor());
+			} else if (input.equals("3")) {
+				displayCourses();
+				System.out.println("What course would you like to edit?");
+				String cName = in.nextLine();
+				for (Course c : courses) {
+					if (c.getName().equals(cName.trim())) {
+						System.out.println("here");						
+						editCor(c);
+						break;
+					} 
+				}
+			} else if (input.equals("4")) {
+				System.out.println("Thank you!");
+			}
+			
+		} while (!input.equals("4"));
+		in.close();
+		
+	}
 	
 }
-
-
