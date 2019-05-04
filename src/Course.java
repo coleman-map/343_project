@@ -1,3 +1,4 @@
+
 import java.util.List;
 
 public class Course {
@@ -9,32 +10,35 @@ public class Course {
 		private int cap;
 		private List<Course> preReq;
 		private List<Student> enrolled;
+		private Double cost;
+		
+		
+		public Course(){
+			
+		}
 		
 		/*
 		Course
 		Constructor
-
 		Inputs:
 		corName - Name of course
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester â€“ Semester when class is offered
-		prof â€“ Professor assigned to teach class
-		cap â€“ Maximum number of students that can enroll
-		prereq â€“ List of Courses required before taking this course
-		enrolled â€“ List of students currently enrolled
+		corSemester – Semester when class is offered
+		prof – Professor assigned to teach class
+		cap – Maximum number of students that can enroll
+		prereq – List of Courses required before taking this course
+		enrolled – List of students currently enrolled
 		            	
 		Outputs: None
-
 		Return Value: the Course
-
 		Exception:
-		InvalidStringLength â€“ if string corName exceeds 150 characters
-		InvalidTime â€“ if start and end time conflict
-		InvalidCoursePrereq â€“ if a course that doesnâ€™t exist is assigned as a prerequisite  
+		InvalidStringLength – if string corName exceeds 150 characters
+		InvalidTime – if start and end time conflict
+		InvalidCoursePrereq – if a course that doesn’t exist is assigned as a prerequisite  
 		*/
-		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap,  List<Course> preReq, List<Student> e) {
+		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap,  List<Course> preReq, List<Student> e, Double cost) {
 			this.corName = corName;
 			this.cStart = cStart;
 			this.cEnd = cEnd;
@@ -44,19 +48,17 @@ public class Course {
 			this.cap = cap;
 			this.preReq = preReq;
 			this.enrolled = e;
+			this.cost = cost;
 		}
 
 
 		/*
 		getName
 		Returns course name
-
 		Inputs: 	None
-
 		Outputs:	None
 		
 		Return Value: corName (String)
-
 		Exception: None
 		*/
 		public String getName() {
@@ -68,16 +70,12 @@ public class Course {
 		/*
 		getStartTime
 		            	Returns course start time
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	corStartTime - time class begins(Calendar)
-
 		Exception:
 			None
 		*/
@@ -89,16 +87,12 @@ public class Course {
 		/*
 		getEndTime
 		            	Returns course end time
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	None
-
 		Return Value: 
 		            	corEndTime - time class ends (Calendar)
-
 		Exception:
 			None
 		*/
@@ -110,16 +104,12 @@ public class Course {
 		/*
 		getLocation
 		            	Returns course location
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	corLocation - location (String)
-
 		Exception:
 			None
 		*/
@@ -131,16 +121,12 @@ public class Course {
 		/*
 		getSemester
 		            	Returns course semester 
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	corSemester - semester (String)
-
 		Exception:
 			None
 		*/
@@ -153,16 +139,12 @@ public class Course {
 		/*
 		getProf
 		            	Returns course professor
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	None
-
 		Return Value: 
 		            	Prof - course professor (Professor)
-
 		Exception:
 			None
 		*/
@@ -173,16 +155,12 @@ public class Course {
 		/*
 		getCap
 		            	Returns course maximum enrollment possible
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	Cap - max # of enrollment (int)
-
 		Exception:
 			None
 		*/
@@ -191,18 +169,19 @@ public class Course {
 		}
 
 
+		public Double getCost(){
+			return this.cost;
+		}
+		
 		/*
 		setName
 		            	Sets course name to input value
-
 		Inputs:
 		            	name - new course name 
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			InvalidStringLength - if string exceeds 150 characters
 		*/
@@ -214,16 +193,12 @@ public class Course {
 		/*
 		setStartTime
 		            	Sets course start time to new values via Calander.changeDate() function
-
 		Inputs:
 		            	None 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			None
 		*/
@@ -235,13 +210,10 @@ public class Course {
 		/*
 		setEndTime
 		            	Sets course end time to new values via Calander.changeDate() function
-
 		Inputs:
 		            	None 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
 		Exception:
@@ -254,16 +226,12 @@ public class Course {
 		/*
 		setLocation
 		            	Sets course location to input value
-
 		Inputs:
 		            	loc - new course location 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			InvalidStringLength - if string exceeds 150 characters
 		*/
@@ -275,16 +243,12 @@ public class Course {
 		/*
 		setSemester
 		            	Sets course semester to input value
-
 		Inputs:
 		            	sem - new course semester 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			InvalidStringLength - if string exceeds 150 characters
 		*/
@@ -296,16 +260,12 @@ public class Course {
 		/*
 		setProf
 		            	Sets course professor to input value
-
 		Inputs:
 		            	p - new course profesor 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			InvalidObjectDoesNotExist - if professor input does not exist in database
 		*/
@@ -317,16 +277,12 @@ public class Course {
 		/*
 		setCap
 		            	Sets course cap to input value
-
 		Inputs:
 		            	cap - new course cap 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			None
 		*/
@@ -334,20 +290,20 @@ public class Course {
 			this.cap = cap;
 		}
 
+		
+		public void setCost(Double cost){
+			this.cost = cost;
+		}
 
 		/*
 		addPrereq
 		            	Add another course as a prerequisite 
-
 		Inputs:
 		            	newPre - new course to add to prereq list 
-
 		Outputs:
 		            	None
-
 		Return Value:
 		            	None
-
 		Exception:
 			InvalidObjectDoesNotExist - if course does not exist in database
 		*/
@@ -366,16 +322,12 @@ public class Course {
 		/*
 		removePrereq
 		            	Remove a course as a prerequisite 
-
 		Inputs:
 		            	choice - number of course to remove 
-
 		Outputs:
 		            	Display list of current prerequisites 
-
 		Return Value:
 		            	None
-
 		Exception:
 			ListEmpty - if the list is empty
 		*/
@@ -392,16 +344,12 @@ public class Course {
 		/*
 		displayPrereq
 		            	Display current list of prereqs for course 
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	List of prerequisites 
-
 		Return Value:
 		            	None
-
 		Exception:
 			ListEmpty - if the list is empty
 		*/
@@ -415,16 +363,12 @@ public class Course {
 		/*
 		displayEnrolled
 		            	Display current list of students enrolled in course 
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	List of students enrolled
-
 		Return Value:
 		            	None
-
 		Exception:
 			ListEmpty - if the list is empty
 		*/
@@ -438,16 +382,12 @@ public class Course {
 		/*
 		corMenu
 		            	Menu used by admin to edit individual aspects of a course
-
 		Inputs:
 		            	None
-
 		Outputs:
 		            	Various menu options to edit the course number 1 - 7
-
 		Return Value:
 		            	None
-
 		Exception:
 			OutofBounds - if number inputted is not between 1 and 7'
 			
@@ -455,15 +395,45 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester â€“ Semester when class is offered
-		prof â€“ Professor assigned to teach class
-		cap â€“ Maximum number of students that can enroll
-		prereq â€“ List of Courses required before taking this course
-		enrolled â€“ List of students currently enrolled
+		corSemester – Semester when class is offered
+		prof – Professor assigned to teach class
+		cap – Maximum number of students that can enroll
+		prereq – List of Courses required before taking this course
+		enrolled – List of students currently enrolled
 		*/
 //		void corMenu(){
 //		
 //		}
+		
+	
+		
+		public Boolean addStudent(Student s){
+			if(s.getCurrentUnits() == 20 || enrolled.size() == cap){
+				return false;
+			}else if(){
+	
+			}else{
+				for(String sCor: s.getCoursesTaken()){
+					if(preReq.contains(sCor)){
+
+					}else{
+						return false;
+					}
+				}
+				enrolled.add(s);
+				cap--;
+				return true;
+				
+			}
+		}
+		
+		public void dropStudent(Student s){
+			for(Student stud: enrolled){
+				if(stud.getID() == s.getID()){
+					enrolled.remove(stud);
+					cap++;
+				}
+			}
+		}
 
 }
-
