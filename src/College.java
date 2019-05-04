@@ -293,6 +293,18 @@ public class College {
 		
 		
 	}
+	 
+	/**
+	 * editDepMenu
+	 * his sub-menu allows to change the department name, open the major menu or going back to the College menu
+	 * 
+	 * Inputs: None
+	 * 
+	 * Outputs: Menu
+	 * 
+	 * ReturnValue: None
+	 * 
+	 */
 	public void editDepMenu() {
   	  boolean found=false;
   	  
@@ -303,27 +315,39 @@ public class College {
   	  int index=0;
   	  
   	  displayDeps();
-  	  System.out.println("Select the major you want to work on");
+  	  System.out.println("Select the Department you want to work on");
   	  major_chosen=in.nextLine();
   	  Department current=findDep(major_chosen);
   	  
   	  while(!major_chosen.equalsIgnoreCase("exit")) {
-  		  System.out.print("\n" + current.getDepName()+ " MAJOR MENU "
-					+ "\n1. Change major name"
-					+ "\n2. Major Menu"
+  		  System.out.print("\n" + current.getDepName()+ " DEPARTMENT MENU "
+					+ "\n1. Change department name"
+					+ "\n2. Department Menu"
 					+ "\n3. Exit"
 					+ "\nEnter here: ");
   		  opt_chosen=in.nextLine();
   		  opt_chosen_i= validator.validate_int(opt_chosen);
   		  if (opt_chosen_i==1)
   			  changeDepName(current);
-  		  else if (opt_chosen_i==2);
-  		  	 // current.Menu();
+  		  else if (opt_chosen_i==2)
+  		  	  current.DepMenu();
   		  else if (opt_chosen_i==3)
   			  break;
   		  }//end of if (opt_chosen_i==1)	
   	  }
-  		  
+  	/**
+  	 * findDep
+  	 * Given a department name it returns the department object
+  	 * 
+  	 * Input: String dep_name- string of characters containing the name of department
+  	 * 
+  	 * Output: Message showing that the department is not found
+  	 * 
+  	 * ReturnValue: Department object
+  	 * 
+  	 * @param dep_name
+  	 * @return Department
+  	 */
 	public Department findDep (String dep_name) {
 	String opt_chosen;
   	  boolean found=false;
@@ -342,6 +366,25 @@ public class College {
 				return this.departments.get(index);
 			
 	}
+	
+	/**
+	 * hasDep
+	 * hasDep given a string of characters returns a boolean showing whether the department linked it belongs to the college or not
+	 * 
+	 * Inputs: String _dep- string of characters containing the name of a department
+	 * 
+	 * Outputs: None
+	 * 
+	 *
+	 * 
+	 * @param _dep
+	 * 
+	 *ReturnValue:
+	 * true if the value belongs to the department
+	 * false if the value does not belong to the department
+	 * 
+	 * @return boolean true or false
+	 */
 	public boolean hasDep (String _dep) {
 		for(Department d:departments) {
 			if (d.getDepName().equalsIgnoreCase(_dep))
@@ -350,7 +393,17 @@ public class College {
 		return false;
 	}
 	
-	
+	/**
+	 * changeDepName
+	 *  Overwrites the name of a department if the name is available 
+	 *  
+	 *  Inputs- Department current- the department whose name is going be overwritten
+	 *  
+	 *  Outputs: Messages showing whether the name is available or not
+	 * 
+	 *  ReturnValue: None
+	 * @param current
+	 */
 	public void changeDepName(Department current) {
   	  String opt_chosen="";
   	  boolean not_new=false;
@@ -388,6 +441,18 @@ public class College {
 		}
 	}
 	
+	/**
+	 * toString
+	 * 
+	 * 	Outputs the College name and the number of departments
+	 * 
+	 * Inputs: None
+	 * 
+	 * Outputs:  A formatted string of characters including the college name and the number of departments
+	 * 
+	 * ReturnValue: a string containing the college name and the number of departments
+	 * 
+	 */
 	public String toString(){
 		return String.format("%-30s %-25s", colName,  numDep);
 	}
@@ -421,7 +486,6 @@ public class College {
 				addDep();
 			}else if(choice == 2){
 				delDep();
-
 			}else if(choice == 3){
 				displayDeps();
 			}else if(choice == 4){
