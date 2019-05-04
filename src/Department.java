@@ -9,13 +9,13 @@ class Department {
 	private String depName;
 	private ArrayList<Major> majors= new ArrayList <Major>();
 	private int maxMajors=50;
-	//private Employee depChair;
+	private Employee depChair;
 
-	/*	
+	/**	
 	       Department
 	   		Constructor
            	Inputs:
-				depName â€“ depName will contain in a string of characters the name of the department
+				depName – depName will contain in a string of characters the name of the department
 				majors: since every department must include a list of majors. Majors, will be a list containing all the required/desired majors.
 				numMjr: numMjr will be an integer representing the amount of majors included in the department
 				depChair: depChar will contain an Employee profile that will take the role of Department Chair  
@@ -26,11 +26,11 @@ class Department {
             		Characteristics from the department as desired
            	Exception:
                 MissingParameter - if a parameter is not included
-				LimitMajors â€“ if there is any intent of increasing the number of majors in the department over 50
-				ParameterOutOfBoundaries â€“ if any of the parameters character limit goes over the established maximum
+				LimitMajors – if there is any intent of increasing the number of majors in the department over 50
+				ParameterOutOfBoundaries – if any of the parameters character limit goes over the established maximum
     */
 	//, Employee depChair
-	public Department (String depName, ArrayList <Major> majors) {
+	public Department (String depName, ArrayList <Major> majors, Employee depChair) {
 		this.depName = depName;
 		if(majors.size()<maxMajors)
 			this.majors = majors;
@@ -41,7 +41,7 @@ class Department {
 				major_list.add(majors.get(i));
 			this.majors=major_list;
 		}
-		//this.depChair = depChair;
+		this.depChair = depChair;
 	}
 	/**
 	 * Department
@@ -54,27 +54,27 @@ class Department {
             		Characteristics from the department as desired
            	Exception:
                 MissingParameter - if a parameter is not included
-				LimitMajors â€“ if there is any intent of increasing the number of majors in the department over 30
-				ParameterOutOfBoundaries â€“ if any of the parameters character limit goes over the established maximum
+				LimitMajors – if there is any intent of increasing the number of majors in the department over 30
+				ParameterOutOfBoundaries – if any of the parameters character limit goes over the established maximum
 	 * @param depName
 	 */
 	public Department (String depName) {
 		this.depName = depName;
 		this.majors = new ArrayList <Major>();
-		//this.depChair = null;
+		this.depChair = null;
 	}
 
 	/** setDepName
 			Sets the name of the Department
 			
-			Inputs: depName â€“ The name of the department
+			Inputs: depName – The name of the department
 			
 			Outputs: None
 			
 			Return Value: None
 			
 			Exception:
-			InvalidParameter â€“ if the object is anything different from a string of characters and/or over the maximum limit of characters allowed
+			InvalidParameter – if the object is anything different from a string of characters and/or over the maximum limit of characters allowed
 	*/
 	public void setDepName (String depName) {
 		this.depName = depName; 
@@ -89,7 +89,7 @@ class Department {
 			
 			Outputs: None
 			
-			Return Value: DepName â€“ The name of the department (String)
+			Return Value: DepName – The name of the department (String)
 			 
 			Exception: None
 	*/
@@ -98,28 +98,30 @@ class Department {
    	}
 
 
-   	/*
-			setChair
+   	
+   	/**
+   	 * setChair
 				Sets the Chair of the Department
 			
-			Inputs: depChair â€“ The Employee that will take the role of Department Chair
+			Inputs: depChair – The Employee that will take the role of Department Chair
 			
 			Outputs: None
 			 
 			Return Value: None
 			
 			Exception:
-			InvalidParameter â€“ if the object is anything different from an employee profile
-    */
-   	/*
-   	 * public void setChair (Employee depChair) {
+			InvalidParameter – if the object is anything different from an employee profile
+   	 * 
+   	 */
+   	
+   	 public void setChair (Employee depChair) {
    		this.depChair = depChair;
    	}
-   	 */
+   	 
    	
            	
 
-     /*
+     /**
 			getChair 
 			Gets the Chair of the Department
 			
@@ -127,15 +129,15 @@ class Department {
 			
 			Outputs: None
 			
-			Return Value: depChair â€“ The Employee that will take the role of Department Chair (Employee)
+			Return Value: depChair – The Employee that will take the role of Department Chair (Employee)
 			
 			Exception: None
     */
-   	/*
-   	 * public Employee getChair() {
+   	
+   	  public Employee getChair() {
    		return depChair;
    	}
-   	 */
+   	
   	
  
 
@@ -148,7 +150,7 @@ class Department {
 		Outputs: None
 		
 		Return Value:
-		numMjr â€“ the amount of majors (int) 
+		numMjr – the amount of majors (int) 
 		
 		Exception:
 		None
@@ -268,7 +270,7 @@ class Department {
 	
 	ReturnValue: None
 	
-	Exception: ParameterNotIncluded â€“ if the major inputed does not belong the department
+	Exception: ParameterNotIncluded – if the major inputed does not belong the department
    	*/
    	public void deleteMjr(Major major) {
    		 	if (majors.contains(major)) {
@@ -317,7 +319,7 @@ class Department {
 	
 	ReturnValue: None
 	
-	Exception: ParameterNotIncluded â€“ if the major inputted does not belong the department
+	Exception: ParameterNotIncluded – if the major inputted does not belong the department
    	*/
    	
    	public void editMjr(Major major, String majorName) {
@@ -532,7 +534,7 @@ class Department {
     * ReturnValue: A String containing the Department name and Dean in charge  
     */
     public String toString() {
-    	return String.format("%-20s %-15s ", this.getDepName(),"Dean yet to be implemented");
+    	return String.format("%-20s %-15s ", this.getDepName(),this.depChair);
     }
     	/**
 	    depMenu 
@@ -540,7 +542,7 @@ class Department {
 	
 		Inputs:	None
 	
-		Outputs: The menu including options such as, include new major, retrieve department informationâ€¦
+		Outputs: The menu including options such as, include new major, retrieve department information…
 	
 	    Return Value: None
 	
@@ -582,3 +584,46 @@ class Department {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//while (!_major_name.equalsIgnoreCase("exit")) {
+//	  displayMajor();
+//	  System.out.println("Enter the name of the major you want to work on or type exit to exit");
+//	  opt_chosen=reader.nextLine();
+//	  if(opt_chosen.equalsIgnoreCase("exit"))
+//		  break;
+//	  for (int i=0;i<this.majors.size();i++) {
+//			if(this.majors.get(i).getName().equals(opt_chosen)) {
+//				found=true;
+//				index=i;
+//			}//end of if(this.majors.get(i).getName()==maj_delete)
+//		}//end of for (int i=0;i<this.majors.size();i++)
+//	  if (!found) {
+//		System.out.println("The major does not exist in this department "
+//				+ "going back to the menu");
+//		continue;	
+//	}else
+//		return this.majors.get(index);
+//}
+//return null;
+	
