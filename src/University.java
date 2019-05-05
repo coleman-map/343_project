@@ -277,6 +277,17 @@ public class University {
 			temp_dep.setChair(Chair);
 		}
 	}
+	
+	public boolean isChair(int id){
+		//displayDep();
+		for (College c:this.colleges) {
+			for (Department d:c.getDepartments()) {
+				if(d.getChair().getID()==id)
+					return true;
+			}
+		}
+		return false;
+	}
 	public void addPerson(){
 		int choice;
 		do{
