@@ -2,6 +2,10 @@
 public class Admin extends Employee{
 	private Boolean isSuper;
 		
+	public Admin(){
+		super();
+	}
+	
 	public Admin(String firstName, String lastName, String midIntial, int ID) {
 		super(firstName, lastName, midIntial, ID);
 		this.isSuper = false;

@@ -238,17 +238,17 @@ public class University {
 		return false;
 	}
 	
-	
-	public boolean isCol(String _colname) {
-		while(true) {
-			for (College c: this.colleges) {
-				if(c.getColName().equalsIgnoreCase(_colname)) {
-					
-				}
+	public boolean isChair(int id){
+		//displayDep();
+		for (College c:this.colleges) {
+			for (Department d:c.getDepartments()) {
+				if(d.getChair().getID()==id)
+					return true;
 			}
 		}
-		
+		return false;
 	}
+	
 	public void changeChair (int id) {
 		College temp;
 		if(!isChair(id)) {
@@ -278,16 +278,6 @@ public class University {
 		}
 	}
 	
-	public boolean isChair(int id){
-		//displayDep();
-		for (College c:this.colleges) {
-			for (Department d:c.getDepartments()) {
-				if(d.getChair().getID()==id)
-					return true;
-			}
-		}
-		return false;
-	}
 	public void addPerson(){
 		int choice;
 		do{

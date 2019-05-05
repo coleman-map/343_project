@@ -221,7 +221,7 @@ class Department {
 				
 				if (major_name.toLowerCase().equals("exit"))
 					break;
-				Major major=new Major (major_name);
+				Major major= new Major(major_name);
 				
 				
 				if(this.majors.size()>0) {
@@ -234,28 +234,28 @@ class Department {
 				}else
 					this.majors.add(major);
 				
-				System.out.println("Do you wish to add courses: (y/n)");
-				String input=reader.nextLine();
-				input=validator.validateChar(input);
-				if (input.equals("y")) {
-					while (input.equals("y")) {
-						String course_name;
-						// final version must have inputs of type course and not string
-						System.out.println("Input the name of the course you want to add or exit to exit");
-						course_name= reader.nextLine();
-						if (course_name.equals("exit")) {
-							input="n";
-							break;
-						}// end of if (course_name=="exit")
-						int index=this.majors.indexOf(major);
-						this.majors.get(index).addCourse(course_name);
-						System.out.println("Course added");
-					}//end of while (input =="y")
-					
-				}//end of if (input=="y")
-				else {
-					break;
-				}
+//				System.out.println("Do you wish to add courses: (y/n)");
+//				String input=reader.nextLine();
+//				input=validator.validateChar(input);
+//				if (input.equals("y")) {
+//					while (input.equals("y")) {
+//						String course_name;
+//						// final version must have inputs of type course and not string
+//						System.out.println("Input the name of the course you want to add or exit to exit");
+//						course_name= reader.nextLine();
+//						if (course_name.equals("exit")) {
+//							input="n";
+//							break;
+//						}// end of if (course_name=="exit")
+//						int index=this.majors.indexOf(major);
+//						this.majors.get(index).addCor(course_name);
+//						System.out.println("Course added");
+//					}//end of while (input =="y")
+//					
+//				}//end of if (input=="y")
+//				else {
+//					break;
+//				}
 					
 			}//end of while (major_name.toLowerCase()!="exit")
 			
@@ -300,7 +300,7 @@ class Department {
 			String maj_delete=reader.nextLine();
 			boolean found=false;
 			for (int i=0;i<this.majors.size();i++) {
-				if(this.majors.get(i).getName().equals(maj_delete)) {
+				if(this.majors.get(i).getMjrName().equals(maj_delete)) {
 					this.majors.remove(i);
 					found=true;
 					System.out.println("Major deleted");
@@ -363,24 +363,22 @@ class Department {
    	 * Return Value: ArrayList containing all the majors in the department
    	 * @return ArrayList
    	 */
-   	public ArrayList getMajors() {
+   	public ArrayList<Major> getMajors() {
    		return this.majors;
    	}
     
    	/**
    	displayMajor	Displays a list of only the major names that belong to the department
-
    	Inputs: None
    	
    	Outputs: A formatted list showing all the names from the majors in the department
-
    	Return Value: None
    	           	   
    	Exception:  None
 	*/ 
       public void displayMajor() {
     	  for (int i=0;i<this.majors.size();i++)
-				System.out.println(this.majors.get(i).getName());
+				System.out.println(this.majors.get(i).getMjrName());
       }
       
      /**
@@ -399,7 +397,7 @@ class Department {
     	  boolean found=false;
     	  int index=0;
     	  for (int i=0;i<this.majors.size();i++) {
-			if(this.majors.get(i).getName().equalsIgnoreCase(_major_name)) {
+			if(this.majors.get(i).getMjrName().equalsIgnoreCase(_major_name)) {
 					found=true;
 					index=i;
 				}
@@ -433,14 +431,14 @@ class Department {
     	  System.out.println("Input the new name for the major");
     	  String new_name=reader.nextLine();
     	  for (int i=0;i<this.majors.size();i++) {
-    		  if (this.majors.get(i).getName().equalsIgnoreCase(new_name))
+    		  if (this.majors.get(i).getMjrName().equalsIgnoreCase(new_name))
     			  not_new=true;
     	  }
     	  if(not_new) {
     		  System.out.println("This name is not valid because it already belong to a major in the department"
     		  		+ " returning to menu");
     	  }else {
-    		  current.setName(new_name);
+    		  current.setMjrName(new_name);
     	  }
     	  
     	  
@@ -480,7 +478,7 @@ class Department {
     	  Major current=findMajor(major_chosen);
     	  
     	  while(!major_chosen.equalsIgnoreCase("exit")) {
-    		  System.out.print("\n" + current.getName()+ " MAJOR MENU "
+    		  System.out.print("\n" + current.getMjrName()+ " MAJOR MENU "
   					+ "\n1. Change major name"
   					+ "\n2. Major Menu"
   					+ "\n3. Exit"
@@ -489,8 +487,8 @@ class Department {
     		  opt_chosen_i= validator.validate_int(opt_chosen);
     		  if (opt_chosen_i==1)
     			  changeMajorName(current);
-    		  else if (opt_chosen_i==2);
-    		  	 // current.Menu();
+    		  else if (opt_chosen_i==2)
+    		  	 current.mjrMenu();
     		  else if (opt_chosen_i==3)
     			  break;
     		  }//end of if (opt_chosen_i==1)	
@@ -513,7 +511,7 @@ class Department {
        */
       public boolean hasMajor(String _major) {
     	  for (int i=0;i<this.majors.size();i++) {
-    		  if (this.majors.get(i).getName().equalsIgnoreCase(_major))
+    		  if (this.majors.get(i).getMjrName().equalsIgnoreCase(_major))
     			  return true;
     	  }
     	  return false;
@@ -591,16 +589,6 @@ class Department {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //while (!_major_name.equalsIgnoreCase("exit")) {
 //	  displayMajor();
 //	  System.out.println("Enter the name of the major you want to work on or type exit to exit");
@@ -621,4 +609,3 @@ class Department {
 //		return this.majors.get(index);
 //}
 //return null;
-	

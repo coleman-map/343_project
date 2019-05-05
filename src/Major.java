@@ -8,6 +8,9 @@ class Major {
 	private List<Course> courses;
 
 
+	public Major(String mjrName){
+		
+	}
 	/*
 		Major
 			Constructor
@@ -62,6 +65,10 @@ class Major {
 		return mjrName;
 	}
 
+	
+	public List<Course> getCourses(){
+		return this.courses;
+	}
 	
 	/*
 	addCor
@@ -186,7 +193,7 @@ class Major {
 	
 	ReturnValue: None
 	
-	Exception: ParameterNotIncluded â€“ if the major inputed does not belong the department
+	Exception: ParameterNotIncluded – if the major inputed does not belong the department
    	*/
    	public void editCor(Course c) {
    		String userInput;
@@ -331,5 +338,6 @@ class Major {
 	}
 	
 }
+
 
 

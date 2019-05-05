@@ -136,13 +136,13 @@ public class Person {
 		}
 		
 		public void createPerson(int id){
-			System.out.println("Enter first name: ");
+			System.out.print("Enter first name: ");
 			this.firstName = in.next();
 			
-			System.out.println("Enter last name: ");
+			System.out.print("Enter last name: ");
 			this.lastName = in.next();
 			
-			System.out.println("Enter middle initial: ");
+			System.out.print("Enter middle initial: ");
 			this.midIn = in.next();
 			
 			this.ID = id;

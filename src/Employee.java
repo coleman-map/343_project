@@ -2,6 +2,10 @@
 public class Employee extends Person {
 	private double salary = 0;
 	
+	public Employee(){
+		
+	}
+	
 	/**
 	 * Default constructor employee
 	 * @param firstName- first name

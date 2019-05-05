@@ -24,18 +24,18 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester â€“ Semester when class is offered
-		prof â€“ Professor assigned to teach class
-		cap â€“ Maximum number of students that can enroll
-		prereq â€“ List of Courses required before taking this course
-		enrolled â€“ List of students currently enrolled
+		corSemester – Semester when class is offered
+		prof – Professor assigned to teach class
+		cap – Maximum number of students that can enroll
+		prereq – List of Courses required before taking this course
+		enrolled – List of students currently enrolled
 		            	
 		Outputs: None
 		Return Value: the Course
 		Exception:
-		InvalidStringLength â€“ if string corName exceeds 150 characters
-		InvalidTime â€“ if start and end time conflict
-		InvalidCoursePrereq â€“ if a course that doesnâ€™t exist is assigned as a prerequisite  
+		InvalidStringLength – if string corName exceeds 150 characters
+		InvalidTime – if start and end time conflict
+		InvalidCoursePrereq – if a course that doesn’t exist is assigned as a prerequisite  
 		*/
 		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap,  List<Course> preReq, List<Student> e, Double cost) {
 			this.corName = corName;
@@ -405,11 +405,11 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester â€“ Semester when class is offered
-		prof â€“ Professor assigned to teach class
-		cap â€“ Maximum number of students that can enroll
-		prereq â€“ List of Courses required before taking this course
-		enrolled â€“ List of students currently enrolled
+		corSemester – Semester when class is offered
+		prof – Professor assigned to teach class
+		cap – Maximum number of students that can enroll
+		prereq – List of Courses required before taking this course
+		enrolled – List of students currently enrolled
 		*/
 //		void corMenu(){
 //		
@@ -420,8 +420,8 @@ public class Course {
 		public Boolean addStudent(Student s){
 			if(s.getCurrentUnits() == 20 || enrolled.size() == cap){
 				return false;
-			}else if(){
-	
+			}else if(timeConflict(s) == true){
+				return true;
 			}else{
 				for(String sCor: s.getCoursesTaken()){
 					if(preReq.contains(sCor)){
@@ -444,6 +444,16 @@ public class Course {
 					cap++;
 				}
 			}
+		}
+		
+		public boolean timeConflict(Student s){
+			for (Course sCor : s.getCurrentSchedule()) {
+		   			if (sCor.getStartTime().equals(cStart) && sCor.getEndTime().equals(cEnd)
+		   					&& sCor.getLocation().equals(corLocation) && sCor.getSemester().equals(corSemester)) {
+		   				return true;
+		   			}
+		   		}
+			return false;
 		}
 
 }

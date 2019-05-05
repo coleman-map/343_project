@@ -1,17 +1,22 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Professor extends Employee{
 
-	private List<String> schedule;
+	private ArrayList<Course> schedule;
 	
 	
-	public Professor(String firstName, String lastName, String midIntial, int ID, double salary) {
-		super(firstName, lastName, midIntial, ID, salary);
-		this.setSchedule(null);
+	public Professor(){
 		
 	}
 	
-	public Professor(String firstName, String lastName, String midIntial, int ID, double salary, List<String> schedule) {
+	public Professor(String firstName, String lastName, String midIntial, int ID, double salary) {
+		super(firstName, lastName, midIntial, ID, salary);
+		
+		
+	}
+	
+	public Professor(String firstName, String lastName, String midIntial, int ID, double salary, ArrayList<Course> schedule) {
 		super(firstName, lastName, midIntial, ID, salary);
 		this.setSchedule(schedule);
 		
@@ -23,7 +28,7 @@ public class Professor extends Employee{
 	 * Gets schedule
 	 * @return the schedule
 	 */
-	public List<String> getSchedule() {
+	public ArrayList<Course> getSchedule() {
 		return schedule;
 	}
 
@@ -31,15 +36,15 @@ public class Professor extends Employee{
 	 * Sets schedule
 	 * @param schedule the schedule to set
 	 */
-	public void setSchedule(List<String> schedule) {
-		this.schedule = schedule;
+	public void setSchedule(ArrayList<Course> schedule) {
+		this.schedule = new ArrayList<Course>(schedule);
 	}
 	
 	/**
 	 * Adds session
 	 * @param session - session you are adding
 	 */
-	public void addSession(String session){
+	public void addSession(Course session){
 		this.schedule.add(session);
 	}
 	
@@ -52,6 +57,11 @@ public class Professor extends Employee{
 	}									   //or schedule.remove(session); 
 												//removes the first String object that is equal to the
         										// String represented by this literal
-	
+
+	public void displaySchedule(){
+		for(Course c: schedule){
+			System.out.println(c);
+		}
+	}
 
 }

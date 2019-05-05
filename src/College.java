@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -57,7 +58,7 @@ public class College {
 	 * Exception: none
 	 */
 	//, Person dean
-	College(String colName, List<Department> departments, int numDep, Person dean){
+	College(String colName, List<Department> departments, Person dean){
 		this.colName = colName;
 		this.dean = dean;
 		this.departments = new ArrayList<Department>(departments);
@@ -112,6 +113,10 @@ public class College {
 		return colName;
 	}
 	
+	
+	public ArrayList<Department> getDepartments(){
+		return this.departments;
+	}
 	/**
 	 * Sets college name
 	 * 
@@ -454,7 +459,18 @@ public class College {
   	  boolean not_new=false;
   	  int index=0;
   	  System.out.println("Input the new name for the Department");
-  	  String new_name=in.nextLine();
+  	  
+  	String new_name = in.nextLine();
+	
+	while(new_name.length() > 60){
+		System.out.println("Character limit reached(60), Enter name again");
+		System.out.println();
+		new_name = in.nextLine();
+	}
+	
+	
+  	  
+  	  
   	  for (int i=0;i<this.departments.size();i++) {
   		  if (this.departments.get(i).getDepName().equalsIgnoreCase(new_name))
   			  not_new=true;
