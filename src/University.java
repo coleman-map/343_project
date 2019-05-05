@@ -238,6 +238,45 @@ public class University {
 		return false;
 	}
 	
+	
+	public boolean isCol(String _colname) {
+		while(true) {
+			for (College c: this.colleges) {
+				if(c.getColName().equalsIgnoreCase(_colname)) {
+					
+				}
+			}
+		}
+		
+	}
+	public void changeChair (int id) {
+		College temp;
+		if(!isChair(id)) {
+			this.displayCols();
+			System.out.println("In what college will the new Chair be placed");
+			String _college =in.nextLine();
+			while(findCol(_college)==null&&!_college.equalsIgnoreCase("exit")) {
+				System.out.println("The college does not belong to the university, try again or input exit");
+				_college=in.nextLine();
+			}
+			if (_college.equalsIgnoreCase("exit"))
+				return;
+			temp=findCol(_college);
+			temp.displayDeps();
+			System.out.println("In what Department will the new Chair be placed");
+			String _department =in.nextLine();
+			
+			while(temp.findDep(_department)==null&&!_department.equalsIgnoreCase("exit")) {
+				System.out.println("The department does not belong to the university, try again or input exit");
+				_department=in.nextLine();
+			}
+			if (_department.equalsIgnoreCase("exit"))
+				return;
+			Department temp_dep=temp.findDep(_department);
+			Employee Chair= (Employee) findPerson(id);
+			temp_dep.setChair(Chair);
+		}
+	}
 	public void addPerson(){
 		int choice;
 		do{
