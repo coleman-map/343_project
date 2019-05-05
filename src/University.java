@@ -355,6 +355,15 @@ public class University {
 		return id;
 	}
 	
+	public boolean timeConflict(Professor p, Course c){
+		for (Course pCo : p.getSchedule()) {
+			if (pCo.getStartTime().equals(c.getStartTime()) && pCo.getEndTime().equals(c.getStartTime()) 
+					&& pCo.getLocation().equals(c.getLocation()) && pCo.getSemester().equals(c.getSemester())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public void removePerson(){
 		int choice;
@@ -508,97 +517,97 @@ public class University {
 		}
 	}
 	
-//	public void displayAllCourses(){
-//		for(College c: colleges){
-//			for(Department d: c.getDepartments()){
-//				for(Major m: d.getMajors()){
-//					for(Course cor: m.getCourses()){
-//						System.out.println(cor);
-//					}
-//				}
-//			}
-//		}
-//	}
-//	
-//	public void displayAllMajors(){
-//		for(College c: colleges){
-//			for(Department d: c.getDepartments()){
-//				for(Major m: d.getMajors()){
-//					System.out.println(m);
-//				}
-//			}
-//		}
-//	}
-//	
-//	public Major findMajor(String name){
-//		for(College c: colleges){
-//			for(Department d: c.getDepartments()){
-//				for(Major m: d.getMajors()){
-//					if(m.getMjrName().equalsIgnoreCase(name)){
-//						return m;
-//					}
-//				}
-//			}
-//		}
-//		return null;
-//	}
-//	
-//	public boolean courseExists(String name){
-//		for(College c: colleges){
-//			for(Department d: c.getDepartments()){
-//				for(Major m: d.getMajors()){
-//					for(Course cor: m.getCourses()){
-//						if(cor.getCorName().equalsIgnoreCase(name)){
-//							return true;
-//						}
-//					}
-//				}
-//			}
-//		}
-//		return false;
-//	}
-//	
-//	public Course findCourse(String name){
-//		for(College c: colleges){
-//			for(Department d: c.getDepartments()){
-//				for(Major m: d.getMajors()){
-//					for(Course cor: m.getCourses()){
-//						if(cor.getCorName().equalsIgnoreCase(name)){
-//							return cor;
-//						}
-//					}
-//				}
-//			}
-//		}
-//		return null;
-//	}
+	public void displayAllCourses(){
+		for(College c: colleges){
+			for(Department d: c.getDepartments()){
+				for(Major m: d.getMajors()){
+					for(Course cor: m.getCourses()){
+						System.out.println(cor);
+					}
+				}
+			}
+		}
+	}
 	
-//	public void assignProf(){
-//		String name;
-//		int id;
-//		Professor p;
-//		Course c;
-//		
-//		displayAllCourses();
-//		do{
-//		do{
-//			System.out.println("Enter course name:");
-//			name = in.nextLine();
-//		}while(findCourse(name) == null || findCourse(name).getProf() != null);
-//		
-//		c = findCourse(name);
-//		
-//		do{
-//			System.out.print("Enter employee ID: ");
-//			id = Integer.parseInt(in.nextLine());
-//		}while(findPerson(id) == null || !(findPerson(id) instanceof Professor) || isDean(id) == true);
-//		
-//		p = (Professor) findPerson(id);
-//		
-//	}while(timeConflict(p, c) == false);
-//		
-//		
-//	}
+	public void displayAllMajors(){
+		for(College c: colleges){
+			for(Department d: c.getDepartments()){
+				for(Major m: d.getMajors()){
+					System.out.println(m);
+				}
+			}
+		}
+	}
+	
+	public Major findMajor(String name){
+		for(College c: colleges){
+			for(Department d: c.getDepartments()){
+				for(Major m: d.getMajors()){
+					if(m.getMjrName().equalsIgnoreCase(name)){
+						return m;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public boolean courseExists(String name){
+		for(College c: colleges){
+			for(Department d: c.getDepartments()){
+				for(Major m: d.getMajors()){
+					for(Course cor: m.getCourses()){
+						if(cor.getName().equalsIgnoreCase(name)){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public Course findCourse(String name){
+		for(College c: colleges){
+			for(Department d: c.getDepartments()){
+				for(Major m: d.getMajors()){
+					for(Course cor: m.getCourses()){
+						if(cor.getName().equalsIgnoreCase(name)){
+							return cor;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public void assignProf(){
+		String name;
+		int id;
+		Professor p;
+		Course c;
+		
+		displayAllCourses();
+		do{
+		do{
+			System.out.println("Enter course name:");
+			name = in.nextLine();
+		}while(findCourse(name) == null || findCourse(name).getProf() != null);
+		
+		c = findCourse(name);
+		
+		do{
+			System.out.print("Enter employee ID: ");
+			id = Integer.parseInt(in.nextLine());
+		}while(findPerson(id) == null || !(findPerson(id) instanceof Professor) || isDean(id) == true);
+		
+		p = (Professor) findPerson(id);
+		
+	}while(timeConflict(p, c) == false);
+		
+		
+	}
 	
 	public void peopleMenu(){
 		int choice;
@@ -711,8 +720,19 @@ public class University {
 			choice = Integer.parseInt(in.nextLine());
 
 			if(choice == 1){
+				
 				System.out.print("Enter new name: ");
-				this.uniName = in.nextLine();
+				String g_uniName = in.nextLine();
+				
+				while(g_uniName.length() > 60){
+					System.out.println("Character limit reached(60), Enter name again");
+					System.out.println();
+					g_uniName = in.nextLine();
+				}
+				
+				this.uniName = g_uniName;
+			
+			
 			}else if(choice == 2){
 				collegeMenu();
 			}else if(choice == 3){
