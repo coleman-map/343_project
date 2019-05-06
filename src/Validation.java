@@ -1,0 +1,114 @@
+
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Validation {
+	
+	// if the input expected is an integer and the user inputs something else, the program
+	// will ask the user to input an integer as many times as necessary
+	public int validate_int (String validate) {
+		Scanner reader = new Scanner(System.in);
+		boolean bool= false;
+		int num=0;
+		// if the user does not enter anything the program will also display a message
+		while(validate.isEmpty()) {
+			System.out.println(("Invalid output, the value has to be an integer, not empty,"
+					+ " try again"));
+			validate = reader.nextLine();
+		}
+		while (!bool) {
+			try {
+				
+				num = Integer.parseInt(validate);
+				bool = true;
+				
+			}
+			catch (Exception e){
+				
+				System.out.println("Invalid output, change char/string to be an integer, try again;");
+				validate = reader.nextLine();
+				bool = false;	
+			}
+		}
+		return num;
+	}
+		
+	// same logic as validate_int but applied to a double
+	public double validate_double (String validate) {
+		Scanner reader = new Scanner(System.in);
+		boolean bool= false;
+		double num=0.0;
+		while(validate.isEmpty()) {
+			System.out.println(("Invalid output, the value has to be a double, try again;"));
+			validate = reader.nextLine();
+		}
+		while (!bool) {
+			try {
+				
+				num = Double.parseDouble(validate);
+				bool = true;
+				
+			}
+			catch (Exception e){
+				
+				System.out.println("Invalid argument, enter a double, try again");
+				validate = reader.nextLine();
+				bool = false;
+			}
+		}
+		return num;
+	}
+	public String validateChar(String userinput) //function to make sure user inputs a character not a digit
+    {
+         Scanner input = new Scanner(System.in); 
+       int inputlength = userinput.length(); 
+       int i = 0;
+        while (inputlength == 0) 
+        {
+            System.out.println("Invalid Input");
+            System.out.println("Please Try Again");
+            userinput =input.nextLine();
+           inputlength = userinput.length();
+
+        }
+        while (i < inputlength) 
+        {
+          // this checks if user input only a character and should only be Y/y or N/n to exit the loop
+            if(!(Character.isLetter(userinput.charAt(i)) && (userinput.charAt(i) == 'Y'&& userinput.length() == 1 )||
+            		(userinput.charAt(i) == 'y'&& userinput.length() == 1 ) || (userinput.charAt(i) == 'n'&& userinput.length() == 1 )|| 
+            				(userinput.charAt(i) == 'N'&& userinput.length() == 1 )))
+            {
+                 System.out.println("\nInvalid Input" + "\nPlease Try Again"); 
+                userinput=input.nextLine(); 
+           inputlength = userinput.length(); 
+           i =0;
+           userinput.charAt(i); }
+            else
+            {
+                i++; 
+            }
+            
+            while(inputlength == 0) 
+            {
+            System.out.println("Invalid Input" + "\nPlease Try Again");
+            userinput =input.nextLine();
+           inputlength = userinput.length();
+            }        
+        } 
+       
+        
+        return userinput;
+        }
+	
+	public String validateLength (String userinput) {
+		Scanner input = new Scanner(System.in); 
+	       int inputlength = userinput.length(); 
+	       while (inputlength>60) {
+	    	   System.out.println("The string of characters is too long (more than 60 characters)"
+	    	   		+ ", re-enter the string");
+	    	   userinput=input.nextLine();
+	    	   inputlength=userinput.length(); 
+	       }
+	     return userinput;
+	       
+	}
+}
