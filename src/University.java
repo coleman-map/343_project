@@ -1,3 +1,5 @@
+package diyUniversity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -292,18 +294,23 @@ public class University {
 			if(choice == 1){
 				Student	s= stud();
 				people.put(s.getID(), s);
+				System.out.println("Student Added!");
 
 			}else if(choice == 2){
 				Professor p = prof();
 				people.put(p.getID(), p);
+				System.out.println("Professor Added!");
 
 			}else if(choice == 3){
 				Admin a = admin();
 				people.put(a.getID(), a);
+				System.out.println("Admin Added!");
+		
 
 			}else if(choice == 4){
 				Employee e = Employ();
 				people.put(e.getID(), e);
+				System.out.println("Employee Added!");
 			}
 		}while(choice != 5);
 			
@@ -425,7 +432,7 @@ public class University {
 				ID = Integer.parseInt(in.nextLine());
 				p = findPerson(ID);
 				people.remove(p.getID());
-			
+				System.out.println("Student Removed!");
 				
 			}else if(choice == 2){
 				
@@ -434,15 +441,17 @@ public class University {
 				ID = Integer.parseInt(in.nextLine());
 				 p = findPerson(ID);
 				people.remove(p.getID());
+				System.out.println("Professor Removed!");
 			
 			}else if(choice == 3){
 			
 			
-			displayAdmins();
-			System.out.println("Enter the ID");
-			ID = Integer.parseInt(in.nextLine());
-			 p = findPerson(ID);
-			people.remove(p.getID());
+				displayAdmins();
+				System.out.println("Enter the ID");
+				ID = Integer.parseInt(in.nextLine());
+				 p = findPerson(ID);
+				people.remove(p.getID());
+				System.out.println("Admin Removed!");
 			
 			
 			
@@ -453,7 +462,7 @@ public class University {
 				ID = Integer.parseInt(in.nextLine());
 				 p = findPerson(ID);
 				people.remove(p.getID());
-				
+				System.out.println("Employee Removed!");
 			}
 		}while(choice != 5);
 			
@@ -570,6 +579,7 @@ public class University {
 	}
 	
 	public void displayAllMajors(){
+		System.out.println("\nCourses: ");
 		for(College c: colleges){
 			for(Department d: c.getDepartments()){
 				for(Major m: d.getMajors()){
@@ -788,3 +798,4 @@ public class University {
 	}
 	
 }
+
