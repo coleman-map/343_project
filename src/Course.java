@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
-import java.util.List;
-
 public class Course {
 		/* A class for representing a college course. */
 
@@ -24,18 +21,18 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester – Semester when class is offered
-		prof – Professor assigned to teach class
-		cap – Maximum number of students that can enroll
-		prereq – List of Courses required before taking this course
-		enrolled – List of students currently enrolled
+		corSemester â€“ Semester when class is offered
+		prof â€“ Professor assigned to teach class
+		cap â€“ Maximum number of students that can enroll
+		prereq â€“ List of Courses required before taking this course
+		enrolled â€“ List of students currently enrolled
 		            	
 		Outputs: None
 		Return Value: the Course
 		Exception:
-		InvalidStringLength – if string corName exceeds 150 characters
-		InvalidTime – if start and end time conflict
-		InvalidCoursePrereq – if a course that doesn’t exist is assigned as a prerequisite  
+		InvalidStringLength â€“ if string corName exceeds 150 characters
+		InvalidTime â€“ if start and end time conflict
+		InvalidCoursePrereq â€“ if a course that doesnâ€™t exist is assigned as a prerequisite  
 		*/
 		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap,  List<Course> preReq, List<Student> e, Double cost) {
 			this.corName = corName;
@@ -405,11 +402,11 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester – Semester when class is offered
-		prof – Professor assigned to teach class
-		cap – Maximum number of students that can enroll
-		prereq – List of Courses required before taking this course
-		enrolled – List of students currently enrolled
+		corSemester â€“ Semester when class is offered
+		prof â€“ Professor assigned to teach class
+		cap â€“ Maximum number of students that can enroll
+		prereq â€“ List of Courses required before taking this course
+		enrolled â€“ List of students currently enrolled
 		*/
 //		void corMenu(){
 //		
@@ -454,6 +451,10 @@ public class Course {
 		   			}
 		   		}
 			return false;
+		}
+		
+		public String toString() {
+			return this.corName;
 		}
 
 }
