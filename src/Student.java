@@ -58,13 +58,22 @@ public class Student extends Person {
 	}
 	
 	public void dropSession(Course session){
+		List<Course> toRemove = new ArrayList<Course>();
+		
 		for(Course cor: currentSchedule){
 			if(cor.getName().equalsIgnoreCase(session.getName())){
-				this.currentSchedule.remove(cor);
+				toRemove.add(cor);
 			}
 		}
+		
+		currentSchedule.removeAll(toRemove);
+		
 		this.tuition -= session.getCost();
 	}
+	
+	public boolean tuitionPaid(){
+		 return this.paidTuition;
+		}
 	
 	public void payTuition(){
 		double pay;

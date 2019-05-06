@@ -53,7 +53,7 @@ public class MainMenu {
 		
 		
 		Course cecs174 = new Course("CECS 174", "1:00 pm", "2:00pm", "VEC-121", "FALL 2019"
-				, (Professor) people.get(764), 25, null, cecs174en, 25.00);
+				, (Professor) people.get(764), 25, 25.00);
 		
 		cecs274pre.add(cecs174);
 		
@@ -236,6 +236,7 @@ public class MainMenu {
 		do{
 			System.out.print("Enter new Major: ");
 			name = in.nextLine();
+			
 		}while(u.findMajor(name) == null);
 			
 		s.setMajor(u.findMajor(name));

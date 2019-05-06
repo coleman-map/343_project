@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+
 import java.util.List;
 
 public class Course {
@@ -21,18 +25,18 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester â€“ Semester when class is offered
-		prof â€“ Professor assigned to teach class
-		cap â€“ Maximum number of students that can enroll
-		prereq â€“ List of Courses required before taking this course
-		enrolled â€“ List of students currently enrolled
+		corSemester – Semester when class is offered
+		prof – Professor assigned to teach class
+		cap – Maximum number of students that can enroll
+		prereq – List of Courses required before taking this course
+		enrolled – List of students currently enrolled
 		            	
 		Outputs: None
 		Return Value: the Course
 		Exception:
-		InvalidStringLength â€“ if string corName exceeds 150 characters
-		InvalidTime â€“ if start and end time conflict
-		InvalidCoursePrereq â€“ if a course that doesnâ€™t exist is assigned as a prerequisite  
+		InvalidStringLength – if string corName exceeds 150 characters
+		InvalidTime – if start and end time conflict
+		InvalidCoursePrereq – if a course that doesn’t exist is assigned as a prerequisite  
 		*/
 		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap,  List<Course> preReq, List<Student> e, Double cost) {
 			this.corName = corName;
@@ -44,6 +48,19 @@ public class Course {
 			this.cap = cap;
 			this.preReq = preReq;
 			this.enrolled = e;
+			this.cost = cost;
+		}
+		
+		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap, Double cost) {
+			this.corName = corName;
+			this.cStart = cStart;
+			this.cEnd = cEnd;
+			this.corLocation = corLocation;
+			this.corSemester = corSemester;
+			this.prof = prof;
+			this.cap = cap;
+			this.preReq = new ArrayList<Course>();
+			this.enrolled = new ArrayList<Student>();
 			this.cost = cost;
 		}
 		
@@ -402,11 +419,11 @@ public class Course {
 		corStartTime - Time when class meets
 		corEndTime - Time when class ends
 		corLocation - Room and building where class meets
-		corSemester â€“ Semester when class is offered
-		prof â€“ Professor assigned to teach class
-		cap â€“ Maximum number of students that can enroll
-		prereq â€“ List of Courses required before taking this course
-		enrolled â€“ List of students currently enrolled
+		corSemester – Semester when class is offered
+		prof – Professor assigned to teach class
+		cap – Maximum number of students that can enroll
+		prereq – List of Courses required before taking this course
+		enrolled – List of students currently enrolled
 		*/
 //		void corMenu(){
 //		
@@ -434,11 +451,15 @@ public class Course {
 			}
 		}
 		
+		public void addProf(Professor p){
+			this.prof = p;
+		}
+		
 		public void dropStudent(Student s){
-			for(Student stud: enrolled){
+			for(Iterator<Student> iter = enrolled.iterator(); iter.hasNext();){
+				Student stud = iter.next();
 				if(stud.getID() == s.getID()){
-					enrolled.remove(stud);
-					cap++;
+					iter.remove();
 				}
 			}
 		}
@@ -452,9 +473,8 @@ public class Course {
 		   		}
 			return false;
 		}
-		
-		public String toString() {
-			return this.corName;
-		}
 
+		public String toString(){
+			return String.format("%-15s", corName);
+		}
 }

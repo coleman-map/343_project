@@ -1,5 +1,3 @@
-package diyUniversity;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +7,7 @@ import java.util.TreeMap;
 
 public class University {
 	Scanner in = new Scanner(System.in);
+	Validation validator = new Validation();
 	/**
 	 * A class for representing a different
 	 */
@@ -294,23 +293,18 @@ public class University {
 			if(choice == 1){
 				Student	s= stud();
 				people.put(s.getID(), s);
-				System.out.println("Student Added!");
 
 			}else if(choice == 2){
 				Professor p = prof();
 				people.put(p.getID(), p);
-				System.out.println("Professor Added!");
 
 			}else if(choice == 3){
 				Admin a = admin();
 				people.put(a.getID(), a);
-				System.out.println("Admin Added!");
-		
 
 			}else if(choice == 4){
 				Employee e = Employ();
 				people.put(e.getID(), e);
-				System.out.println("Employee Added!");
 			}
 		}while(choice != 5);
 			
@@ -432,7 +426,7 @@ public class University {
 				ID = Integer.parseInt(in.nextLine());
 				p = findPerson(ID);
 				people.remove(p.getID());
-				System.out.println("Student Removed!");
+			
 				
 			}else if(choice == 2){
 				
@@ -441,17 +435,15 @@ public class University {
 				ID = Integer.parseInt(in.nextLine());
 				 p = findPerson(ID);
 				people.remove(p.getID());
-				System.out.println("Professor Removed!");
 			
 			}else if(choice == 3){
 			
 			
-				displayAdmins();
-				System.out.println("Enter the ID");
-				ID = Integer.parseInt(in.nextLine());
-				 p = findPerson(ID);
-				people.remove(p.getID());
-				System.out.println("Admin Removed!");
+			displayAdmins();
+			System.out.println("Enter the ID");
+			ID = Integer.parseInt(in.nextLine());
+			 p = findPerson(ID);
+			people.remove(p.getID());
 			
 			
 			
@@ -462,7 +454,7 @@ public class University {
 				ID = Integer.parseInt(in.nextLine());
 				 p = findPerson(ID);
 				people.remove(p.getID());
-				System.out.println("Employee Removed!");
+				
 			}
 		}while(choice != 5);
 			
@@ -579,7 +571,6 @@ public class University {
 	}
 	
 	public void displayAllMajors(){
-		System.out.println("\nCourses: ");
 		for(College c: colleges){
 			for(Department d: c.getDepartments()){
 				for(Major m: d.getMajors()){
@@ -656,7 +647,32 @@ public class University {
 		
 	}while(timeConflict(p, c) == false);
 		
+		p.addSession(c);
+		c.addProf(p);
 		
+	}
+	
+	public void isPaid(Student _student) {
+		 if (_student.tuitionPaid())
+		  System.out.println("The student has paid the tuition");
+		 else
+		  System.out.println("The student has not paid the tuition");
+		}
+	
+	public void checkTuition(){
+		displayStuds();
+		   System.out.println("Enter the ID of the student you want to check");
+		   String student_ID=in.nextLine();
+		   int student = validator.validate_int(student_ID);
+		   //Validate??
+		   while (findPerson(student)==null) {
+		    
+		    System.out.println("The ID does not belong to any student try again");
+		    student_ID=in.nextLine();
+		    student= validator.validate_int(student_ID);
+		   }
+		   Student std= (Student)findPerson(student);
+		   isPaid(std);
 	}
 	
 	public void peopleMenu(){
@@ -668,7 +684,9 @@ public class University {
 					+ "\n3. View Students"
 					+ "\n4. View Employees"
 					+ "\n5. Edit a Person"
-					+ "\n6. Exit"
+					+ "\n6. Assign Chair"
+					+ "\n7. Check Student Tuition"
+					+ "\n8. Exit"
 					+ "\nEnter here: ");
 			choice = Integer.parseInt(in.nextLine());
 			
@@ -682,8 +700,18 @@ public class University {
 				displayEmps();
 			}else if(choice == 5){
 				editPerson();
+			}else if(choice == 6){
+				int inp;
+				displayEmps();
+				do{
+					System.out.print("Enter ID of employee: ");
+					inp = Integer.parseInt(in.nextLine());
+				}while(findPerson(inp) == null);
+				changeChair(findPerson(inp).getID());
+			}else if(choice == 7){
+				checkTuition();
 			}
-		}while(choice != 6);
+		}while(choice != 8);
 			
 	}
 	
@@ -743,7 +771,7 @@ public class University {
 			}else if(choice == 4){
 				return;
 			}
-		}while(choice != 4);
+		}while(choice != 5);
 	}
 	
 	/**
@@ -793,9 +821,5 @@ public class University {
 		
 	}
 	
-	public static void main(String[] args) {
-		
-	}
 	
 }
-

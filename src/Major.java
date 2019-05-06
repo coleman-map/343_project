@@ -287,7 +287,7 @@ class Major {
 
 	
 	public String toString() {
-		return "hello";}
+		return String.format("%-15s", mjrName);}
 	
 	/*
 	mjrMenu
