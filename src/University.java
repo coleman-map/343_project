@@ -135,6 +135,7 @@ public class University {
 			do{
 				System.out.print("Enter College name: ");
 				name = in.nextLine();
+				name = validator.validateLength(name);
 				if(findCol(name) != null){
 					System.out.println("College already exists!");
 				}
@@ -169,6 +170,7 @@ public class University {
 			do{
 				System.out.print("Enter name of College to remove: ");
 				name = in.nextLine();
+				
 				if(findCol(name) == null){
 					System.out.println("College does not exist!");
 				}
@@ -204,6 +206,7 @@ public class University {
 		do{
 			System.out.println("Enter new College name: ");
 			name = in.nextLine();
+			name = validator.validateLength(name);
 			if(findCol(name) != null){
 				System.out.println("College already exists!");
 			}
@@ -832,12 +835,7 @@ public class University {
 				
 				System.out.print("Enter new name: ");
 				String g_uniName = in.nextLine();
-				
-				while(g_uniName.length() > 60){
-					System.out.println("Character limit reached(60), Enter name again");
-					System.out.println();
-					g_uniName = in.nextLine();
-				}
+				name = validator.validateLength(name);
 				
 				this.uniName = g_uniName;
 			
