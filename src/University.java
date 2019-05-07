@@ -1,3 +1,5 @@
+package yes;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -404,6 +406,9 @@ public class University {
 	}
 	
 	public boolean timeConflict(Professor p, Course c){
+		if(p.getSchedule() == null){
+			return false;
+		}
 		for (Course pCo : p.getSchedule()) {
 			if (pCo.getStartTime().equals(c.getStartTime()) && pCo.getEndTime().equals(c.getStartTime()) 
 					&& pCo.getLocation().equals(c.getLocation()) && pCo.getSemester().equals(c.getSemester())) {
@@ -693,8 +698,9 @@ public class University {
 					+ "\n5. Edit a Person"
 					+ "\n6. Assign Chair"
 					+ "\n7. Check Student Tuition"
-					+"\n8. Set Student grade"
-					+ "\n9. Exit"
+					+ "\n8. Set Student grade"
+					+ "\n9. Assign Professor"
+					+ "\n10. Exit"
 					+ "\nEnter here: ");
 			choice = Integer.parseInt(in.nextLine());
 			
@@ -735,8 +741,11 @@ public class University {
 				setGrade(std);
 				
 			
+			}else if(choice == 9){
+				assignProf();
 			}
-		}while(choice != 9);
+			
+		}while(choice != 10);
 			
 	}
 	public void setGrade(Student _student) {
@@ -859,4 +868,3 @@ public class University {
 	
 	
 }
-
