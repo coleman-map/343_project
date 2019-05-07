@@ -1,3 +1,5 @@
+package diyUniversity;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -193,7 +195,7 @@ class Major {
 	
 	ReturnValue: None
 	
-	Exception: ParameterNotIncluded – if the major inputed does not belong the department
+	Exception: ParameterNotIncluded â€“ if the major inputed does not belong the department
    	*/
    	public void editCor(Course c) {
    		String userInput;
@@ -287,7 +289,7 @@ class Major {
 
 	
 	public String toString() {
-		return String.format("%-15s", mjrName);}
+		return this.mjrName;}
 	
 	/*
 	mjrMenu
@@ -338,6 +340,3 @@ class Major {
 	}
 	
 }
-
-
-
