@@ -686,7 +686,8 @@ public class University {
 					+ "\n5. Edit a Person"
 					+ "\n6. Assign Chair"
 					+ "\n7. Check Student Tuition"
-					+ "\n8. Exit"
+					+"\n8.Set Student grade"
+					+ "\n9. Exit"
 					+ "\nEnter here: ");
 			choice = Integer.parseInt(in.nextLine());
 			
@@ -710,9 +711,39 @@ public class University {
 				changeChair(findPerson(inp).getID());
 			}else if(choice == 7){
 				checkTuition();
-			}
-		}while(choice != 8);
+			}else if (choice==8){
 			
+			displayStuds();
+				System.out.println("Enter the ID of the student you want to modify the grade of");
+				String student_ID=in.nextLine();
+				int student = validator.validate_int(student_ID);
+				while (findPerson(student)==null) {
+					
+					System.out.println("The ID does not belong to any student try again");
+					student_ID=in.nextLine();
+					student=validator.validate_int(student_ID);
+				}
+				Student std= (Student)findPerson(student);
+				setGrade(std);
+				
+			
+			}
+		}while(choice != 9);
+			
+	}
+	public void setGrade(Student _student) {
+		_student.viewCoursesTaken();
+		System.out.println("Enter the name of the course whose grade you want to modify");
+		String course=in.nextLine();
+		System.out.println("Enter the grade you want to give the student (A/B/C/D/F)");
+		String grade=in.nextLine();
+		while ((!grade.equals("A"))&&(!grade.equals("B"))&&(!grade.equals("C"))&&(!grade.equals("D"))&&(!grade.equals("F"))) {
+			System.out.println("The grade inputted must be (A/B/C/D/F), try again");
+			grade=in.nextLine();
+		}
+		course+= ": "+grade;
+		
+		_student.setCourse(course);
 	}
 	
 	public void collegeMenu(){
