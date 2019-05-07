@@ -142,6 +142,7 @@ public class University {
 			}while(findCol(name) != null);
 		}
 		
+		System.out.println("College of " + name + " added!");
 		colleges.add(new College(name));
 		numCol++;
 	}
@@ -160,7 +161,7 @@ public class University {
 	 * 	InvalidParameter - college does not exist
 	 */
 	public void delCol() {
-		if(numCol == 0){
+		if(colleges.size() == 0){
 			System.out.println("No Colleges Exist.");
 		}else{
 			String name = "";
@@ -176,6 +177,7 @@ public class University {
 				}
 			}while(findCol(name) == null);
 			
+			System.out.println("College of " + name + " deleted!");
 			colleges.remove(findCol(name));
 			numCol--;
 		}
@@ -212,6 +214,7 @@ public class University {
 			}
 		}while(findCol(name) != null);
 		
+		System.out.println("College name changed to: " + name);
 		c.setColName(name);
 		
 	}
@@ -227,6 +230,7 @@ public class University {
 		}while(findPerson(id) == null || findPerson(id) instanceof Student || isDean(id) == true);
 
 		c.setDean(findPerson(id));
+		System.out.println("Dean changed to: " + findPerson(id).getFirstName() + " " + findPerson(id).getLastName());
 		
 	}
 
@@ -689,7 +693,7 @@ public class University {
 					+ "\n5. Edit a Person"
 					+ "\n6. Assign Chair"
 					+ "\n7. Check Student Tuition"
-					+"\n8.Set Student grade"
+					+"\n8. Set Student grade"
 					+ "\n9. Exit"
 					+ "\nEnter here: ");
 			choice = Integer.parseInt(in.nextLine());
@@ -712,6 +716,7 @@ public class University {
 					inp = Integer.parseInt(in.nextLine());
 				}while(findPerson(inp) == null);
 				changeChair(findPerson(inp).getID());
+				System.out.println("Chair assigned!");
 			}else if(choice == 7){
 				checkTuition();
 			}else if (choice==8){
@@ -835,9 +840,11 @@ public class University {
 				
 				System.out.print("Enter new name: ");
 				String g_uniName = in.nextLine();
-				name = validator.validateLength(name);
+				g_uniName = validator.validateLength(g_uniName);
 				
 				this.uniName = g_uniName;
+				
+				System.out.println("University Named Changed to: " + this.uniName);
 			
 			
 			}else if(choice == 2){
@@ -852,3 +859,4 @@ public class University {
 	
 	
 }
+
