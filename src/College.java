@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -479,6 +477,7 @@ public class College {
   		  System.out.println("This name is not valid because it already belong to a department in the college"
   		  		+ " returning to menu");
   	  }else {
+  		  System.out.println("Department Name Changed To: " + new_name);
   		  current.setDepName(new_name);
   	  }
 	}
@@ -515,7 +514,7 @@ public class College {
 	 * 
 	 */
 	public String toString(){
-		return String.format("%-30s %-25s", colName,  numDep);
+		return String.format("%-30s %-25s", colName,  departments.size());
 	}
 	
 	
