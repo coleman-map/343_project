@@ -41,7 +41,12 @@ public class Student extends Person {
 	}
 	
 	
-	
+	public String getCourse(String course_name) {
+		return this.coursesTaken.get(this.coursesTaken.indexOf(course_name));
+	}
+	public void setCourse(String _course_name) {
+		this.coursesTaken.set(this.coursesTaken.indexOf(_course_name), _course_name);
+	}
 	
 	public void setCoursesTaken(List<String> coursesTaken) {
 		this.coursesTaken = new ArrayList<String>(coursesTaken);
