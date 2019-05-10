@@ -1,3 +1,4 @@
+package diyUniversity;
 
 public class Admin extends Employee{
 	private Boolean isSuper;
@@ -16,6 +17,9 @@ public class Admin extends Employee{
 		this.isSuper = isSuper;
 	}
 	
+	public boolean isSuper() {
+		return isSuper;
+	}
 
 
 	public void makeAdmin(){
