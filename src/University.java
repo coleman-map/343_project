@@ -1,5 +1,3 @@
-package yes;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -293,9 +291,9 @@ public class University {
 		do{
 			System.out.print("\n1. Add a Student"
 					+ "\n2. Add a Professor"
-					+ "\n3. Add a Admin"
-					+ "\n4. Add a Employee"
-					+ "\n5. Exit"
+//					+ "\n3. Add a Admin"
+					+ "\n3. Add a Employee"
+					+ "\n4. Exit"
 					+ "\nEnter here: ");
 			choice = Integer.parseInt(in.nextLine());
 			
@@ -306,17 +304,18 @@ public class University {
 			}else if(choice == 2){
 				Professor p = prof();
 				people.put(p.getID(), p);
-
+				
 			}else if(choice == 3){
-				Admin a = admin();
-				people.put(a.getID(), a);
-
-			}else if(choice == 4){
 				Employee e = Employ();
 				people.put(e.getID(), e);
 			}
 		}while(choice != 5);
 			
+	}
+	
+	public void addAdmin() {
+		Admin a = admin();
+		people.put(a.getID(), a);
 	}
 
 	
@@ -372,7 +371,6 @@ public class University {
 		p.createPerson(id);
 		
 		return p;		
-		
 	}
 
 	public Student stud(){
@@ -584,6 +582,7 @@ public class University {
 	
 	public void displayAllMajors(){
 		for(College c: colleges){
+			System.out.println("\nMajors in College of " + c.getColName());
 			for(Department d: c.getDepartments()){
 				for(Major m: d.getMajors()){
 					System.out.println(m);
