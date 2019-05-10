@@ -1,4 +1,4 @@
-package diyUniversity;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,7 @@ public class MainMenu {
 		inCor2.add(phys151);
 		inCor2.add(phys152);
 		
-		inMaj1.add(new Major("Computer Science BA", inCor1));
+		inMaj1.add(new Major("Computer Science", inCor1));
 		inDeps1.add(new Department("Computer Science", inMaj1, (Employee)people.get(918)));
 		
 		initialColleges.add(new College("Engineering", inDeps1, people.get(764)));
@@ -102,7 +102,12 @@ public class MainMenu {
 			Person user = login(uni);
 			
 			if(user instanceof Admin){
-				AdminMenu(uni, user);
+				if (((Admin) user).isSuper()) {
+					superAdminMenu(uni, user);
+				} else {
+					AdminMenu(uni, user);
+				}
+
 			}else if( user instanceof Student){
 				StudMenu(uni, (Student) user);
 			}else{
@@ -177,6 +182,29 @@ public class MainMenu {
 		}while(choice != 3);
 	}
 	
+	private static void superAdminMenu(University uni, Person user){
+		int choice;
+		do{
+		System.out.print("\nSUPER ADMININSTRATOR MENU "
+				+ "\n0. Add Admin"
+				+ "\n1. University Menu(UniversityName/Students/Employees)"
+				+ "\n2. Other Menus(Colleges/Departments/Majors/Courses) "
+				+ "\n3. Exit "
+				+ "\nEnter here: ");
+		choice = Integer.parseInt(in.nextLine());
+		
+		if(choice == 1){
+			uni.uniMenu();
+		}else if(choice == 2){
+			uni.collegeMenu();
+		}else if(choice == 3){
+			return;
+		} else if (choice == 0) {
+			uni.addAdmin();
+		}
+		}while(choice != 3);
+	}
+	
 	public static void enrollCourse(Student s, University u){
 		
 		if(s.getCurrentUnits() >= 20){
@@ -232,7 +260,12 @@ public class MainMenu {
 		
 		u.displayAllMajors();
 		
-		System.out.println("Current Major: " + s.getMajor());
+		if (s.getMajor() == null) {
+			System.out.println("\nCurrent Major: none");
+		} else {
+			System.out.println("\nCurrent Major: " + s.getMajor());
+		}
+
 		
 		do{
 			System.out.print("Enter new Major: ");
@@ -241,6 +274,7 @@ public class MainMenu {
 		}while(u.findMajor(name) == null);
 			
 		s.setMajor(u.findMajor(name));
+		System.out.println("Major Changed To: " + name);
 	}
 
 	public static Person login(University uni){
