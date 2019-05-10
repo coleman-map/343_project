@@ -577,37 +577,3 @@ class Department {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//while (!_major_name.equalsIgnoreCase("exit")) {
-//	  displayMajor();
-//	  System.out.println("Enter the name of the major you want to work on or type exit to exit");
-//	  opt_chosen=reader.nextLine();
-//	  if(opt_chosen.equalsIgnoreCase("exit"))
-//		  break;
-//	  for (int i=0;i<this.majors.size();i++) {
-//			if(this.majors.get(i).getName().equals(opt_chosen)) {
-//				found=true;
-//				index=i;
-//			}//end of if(this.majors.get(i).getName()==maj_delete)
-//		}//end of for (int i=0;i<this.majors.size();i++)
-//	  if (!found) {
-//		System.out.println("The major does not exist in this department "
-//				+ "going back to the menu");
-//		continue;	
-//	}else
-//		return this.majors.get(index);
-//}
-//return null;
