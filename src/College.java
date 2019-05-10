@@ -259,6 +259,7 @@ public class College {
 					}// end of if (course_name=="exit")
 					
 					int index=this.departments.indexOf(department);
+//					boolean check = true;
 					
 					for (int i=0;i<this.departments.size();i++) {
 						if(this.departments.get(i).hasMajor(major_name)) {
@@ -270,17 +271,16 @@ public class College {
 					if(this.departments.get(index).hasMajor(major_name))
 						continue;
 					else {
+//						System.out.println("Check: ");
 						Major major=new Major(major_name);
 						this.departments.get(index).addMjr(major);	
 						//System.out.println("Major added");
 					}
 					
+					
 				}//end of while (input =="y")
 				
 			}//end of if (input=="y")
-			else {
-				break;
-			}
 
 		}while (!dep_Name.equalsIgnoreCase("exit"));
 		
