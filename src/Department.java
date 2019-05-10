@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 class Department {
@@ -174,7 +175,7 @@ class Department {
      * @return Arraylist this.majors;
      */
     public ArrayList getMjrs() {
-    	return this.majors;
+    		return this.majors;
     	
     }
     
@@ -194,7 +195,7 @@ class Department {
     
    	public void addMjr(Major major) {
 		 	if (this.majors.size()<maxMajors & !majors.contains(major)) {
-		 		majors.add(major);
+		 		this.majors.add(major);
 		 		System.out.println("Major Added!");
 		 	} else {
 		 		System.out.println("Major already exists!");
@@ -224,15 +225,16 @@ class Department {
 				Major major= new Major(major_name);
 				
 				
-				if(this.majors.size()>0) {
+				if(this.majors.size()<maxMajors) {
 					if (this.majors.contains(major)) {
 						System.out.println("The major already exists and cannot be added again");
-						continue;
-					}else
+					}else {
 						this.majors.add(major);
 						
-				}else
-					this.majors.add(major);
+					}
+				} else {
+					System.out.println("Major Capacacity Filled!");
+				}
 				
 //				System.out.println("Do you wish to add courses: (y/n)");
 //				String input=reader.nextLine();
@@ -465,34 +467,33 @@ class Department {
        *
        */
       public void editMajorMenu() {
-    	  boolean found=false;
-    	  
-    	  String major_chosen="";
-    	  String opt_chosen="";
-    	  int opt_chosen_i;
-    	  Major temp_major;
-    	  int index=0;
-    	  
-    	  displayMajor();
-    	  System.out.println("Select the major you want to work on");
-    	  major_chosen=reader.nextLine();
-    	  Major current=findMajor(major_chosen);
-    	  
-    	  while(!major_chosen.equalsIgnoreCase("exit")) {
-    		  System.out.print("\n" + current.getMjrName()+ " MAJOR MENU "
-  					+ "\n1. Change major name"
-  					+ "\n2. Major Menu"
-  					+ "\n3. Exit"
-  					+ "\nEnter here: ");
-    		  opt_chosen=reader.nextLine();
-    		  opt_chosen_i= validator.validate_int(opt_chosen);
-    		  if (opt_chosen_i==1)
-    			  changeMajorName(current);
-    		  else if (opt_chosen_i==2)
-    		  	 current.mjrMenu();
-    		  else if (opt_chosen_i==3)
-    			  break;
-    		  }//end of if (opt_chosen_i==1)	
+	    	  boolean found=false;
+	    	  
+	    	  String major_chosen="";
+	    	  String opt_chosen="";
+	    	  int opt_chosen_i;
+	    	  Major temp_major;
+	    	  int index=0;
+	    	  displayMajor();
+	    	  System.out.println("Select the major you want to work on");
+	    	  major_chosen=reader.nextLine();
+	    	  Major current=findMajor(major_chosen);
+	    	  
+	    	  while(!major_chosen.equalsIgnoreCase("exit")) {
+	    		  System.out.print("\n" + current.getMjrName()+ " MAJOR MENU "
+	  					+ "\n1. Change major name"
+	  					+ "\n2. Major Menu"
+	  					+ "\n3. Exit"
+	  					+ "\nEnter here: ");
+	    		  opt_chosen=reader.nextLine();
+	    		  opt_chosen_i= validator.validate_int(opt_chosen);
+	    		  if (opt_chosen_i==1)
+	    			  changeMajorName(current);
+	    		  else if (opt_chosen_i==2)
+	    		  	 current.mjrMenu();
+	    		  else if (opt_chosen_i==3)
+	    			  break;
+	    		  }//end of if (opt_chosen_i==1)	
     	  }
     		  
       /**
