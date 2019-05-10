@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +7,10 @@ import java.util.TreeMap;
 public class MainMenu {
 	static Scanner in = new Scanner(System.in);
 	
+	/**
+	 * Program runs from here
+	 * @param args
+	 */
 	public static void main(String[] args){
 		TreeMap<Integer, Person> people = new TreeMap<Integer, Person>();
 		ArrayList<College> initialColleges = new ArrayList<College>();
@@ -26,9 +29,6 @@ public class MainMenu {
 		
 		List<Student> cecs174en = new ArrayList<Student>();
 		List<Student> phys152en = new ArrayList<Student>();
-				
-		
-		 
 		
 		
 		//Students
@@ -70,11 +70,6 @@ public class MainMenu {
 				, (Professor) people.get(175), 50, phys152pre, null, 30.00);
 		
 		
-		
-		
-		
-		
-		
 		inCor1.add(cecs174);
 		inCor1.add(cecs274);
 		
@@ -96,6 +91,10 @@ public class MainMenu {
 		
 	}
 	
+	/**
+	 * User logs in here
+	 * @param uni
+	 */
 	public static void menu(University uni){
 		int exit = 1;
 		do{
@@ -117,6 +116,12 @@ public class MainMenu {
 		}while(exit == 1);	
 	}
 	
+	
+	/**
+	 * Menu if user is Professor
+	 * @param uni
+	 * @param user
+	 */
 	private static void ProfMenu(University uni, Professor user){
 		int choice;
 		do{
@@ -130,6 +135,11 @@ public class MainMenu {
 		}while(choice != 2);
 	}
 
+	/**
+	 * Menu if user is Student
+	 * @param uni
+	 * @param user
+	 */
 	private static void StudMenu(University uni, Student user){
 		int choice;
 		do{
@@ -162,6 +172,11 @@ public class MainMenu {
 		}while(choice != 7);
 	}
 
+	/**
+	 * Menu if user is Admin
+	 * @param uni
+	 * @param user
+	 */
 	private static void AdminMenu(University uni, Person user){
 		int choice;
 		do{
@@ -182,6 +197,11 @@ public class MainMenu {
 		}while(choice != 3);
 	}
 	
+	/**
+	 * Menu if user is Super Admin
+	 * @param uni
+	 * @param user
+	 */
 	private static void superAdminMenu(University uni, Person user){
 		int choice;
 		do{
@@ -205,6 +225,12 @@ public class MainMenu {
 		}while(choice != 3);
 	}
 	
+	
+	/**
+	 * Enrolls Students in a course
+	 * @param s
+	 * @param u
+	 */
 	public static void enrollCourse(Student s, University u){
 		
 		if(s.getCurrentUnits() >= 20){
@@ -232,6 +258,12 @@ public class MainMenu {
 		 	
 	}
 	
+	
+	/**
+	 * Drops student from a course
+	 * @param s
+	 * @param u
+	 */
 	public static void dropCourse(Student s, University u){
 		
 		if(s.getCurrentUnits() == 0){
@@ -255,6 +287,12 @@ public class MainMenu {
 		s.calcCurrentUnits();
 	}
 	
+	
+	/**
+	 * Student selects major 
+	 * @param s
+	 * @param u
+	 */
 	public static void selectMajor(Student s, University u){
 		String name;
 		
@@ -277,6 +315,12 @@ public class MainMenu {
 		System.out.println("Major Changed To: " + name);
 	}
 
+	
+	/**
+	 * Login information is checked and user is found
+	 * @param uni
+	 * @return Person
+	 */
 	public static Person login(University uni){
 		int id = 0;
 		
