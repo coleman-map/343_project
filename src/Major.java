@@ -1,5 +1,3 @@
-package diyUniversity;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +9,7 @@ class Major {
 
 
 	public Major(String mjrName){
-		
+		this.mjrName = mjrName;
 	}
 	/*
 		Major
