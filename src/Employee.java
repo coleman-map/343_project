@@ -1,6 +1,11 @@
 public class Employee extends Person {
+	
 	private double salary = 0;
 	
+	
+	/**
+	 * Default constructor
+	 */
 	public Employee(){
 		
 	}
@@ -54,9 +59,17 @@ public class Employee extends Person {
 		return salary;	
 	}
 	
+	/**
+	 * Prints object information
+	 */
 	public String toString(){
 		return super.toString() + String.format("%-15s", salary);
 	}
+	
+	/**
+	 * Allows user to edit attributes
+	 * @param id
+	 */
 	public void createEmp(int id){
 		super.createPerson(id);
 	}
