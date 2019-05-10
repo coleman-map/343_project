@@ -202,6 +202,10 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Changes college name
+	 * @param c
+	 */
 	public void changeColName(College c){
 		String name = "";
 		
@@ -219,6 +223,10 @@ public class University {
 		
 	}
 	
+	/**
+	 * Changes dean of college
+	 * @param c
+	 */
 	public void changeDean(College c){
 		int id;
 
@@ -234,6 +242,11 @@ public class University {
 		
 	}
 
+	/**
+	 * Checks if Employee selected is eligible to be a dean of a college
+	 * @param id
+	 * @return true or false
+	 */
 	public boolean isDean(int id){
 		for(College col: colleges){
 			if(col.getDean() == null){
@@ -246,6 +259,11 @@ public class University {
 		return false;
 	}
 	
+	/**
+	 * Checks if Employee selected is eligible to be a chair of a department
+	 * @param id
+	 * @return true or false
+	 */
 	public boolean isChair(int id){
 		//displayDep();
 		for (College c:this.colleges) {
@@ -257,6 +275,10 @@ public class University {
 		return false;
 	}
 	
+	/**
+	 * Changes chair of department
+	 * @param id
+	 */
 	public void changeChair (int id) {
 		College temp;
 		if(!isChair(id)) {
@@ -286,6 +308,9 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Prompts user to create a new Student, Employee, or Professor  
+	 */
 	public void addPerson(){
 		int choice;
 		do{
@@ -313,12 +338,18 @@ public class University {
 			
 	}
 	
+	/**
+	 * Adds a new Admin
+	 */
 	public void addAdmin() {
 		Admin a = admin();
 		people.put(a.getID(), a);
 	}
 
-	
+	/**
+	 * Creates a new Employee
+	 * @return Employee
+	 */
 	public Employee Employ() {
         Employee e = new Employee();
 		
@@ -337,6 +368,10 @@ public class University {
 		
 	}
 	
+	/**
+	 * Creates a new Admin
+	 * @return Admin
+	 */
 	public Admin admin() {
         Admin a = new Admin();
 		
@@ -355,7 +390,10 @@ public class University {
 		
 	}
 	
-	
+	/**
+	 * Creates a new Professor
+	 * @return Professor
+	 */
 	public Professor prof() {
         Professor p = new Professor();
 		
@@ -373,6 +411,10 @@ public class University {
 		return p;		
 	}
 
+	/**
+	 * Creates a new Student
+	 * @return Student
+	 */
 	public Student stud(){
 		Student s = new Student();
 		
@@ -390,6 +432,11 @@ public class University {
 		return s;		
 	}
 	
+	/**
+	 * Checks if ID generated exists already and if so keep generating til new ID is created
+	 * @param id
+	 * @return id
+	 */ 
 	public int idCheck(int id){
 		while(people.containsKey(id))
 		{
@@ -403,6 +450,12 @@ public class University {
 		return id;
 	}
 	
+	/**
+	 * Checks for Professor time conflicts
+	 * @param p
+	 * @param c
+	 * @return true or false
+	 */
 	public boolean timeConflict(Professor p, Course c){
 		if(p.getSchedule() == null){
 			return false;
@@ -416,6 +469,9 @@ public class University {
 		return false;
 	}
 	
+	/**
+	 * Removes a Person from database
+	 */
 	public void removePerson(){
 		int choice;
 		int ID;
@@ -470,6 +526,9 @@ public class University {
 			
 	}
 	
+	/**
+	 * Prompts user to edit the information of an Admin, Student, Professor, or Employee
+	 */
 	public void editPerson(){
 		int choice;
 		int ID;
@@ -511,6 +570,11 @@ public class University {
 			
 	}
 	
+	/**
+	 * Checks if College exists
+	 * @param name
+	 * @return null or College
+	 */
 	public College findCol(String name){
 		for(College c: colleges){
 			if(c.getColName().equalsIgnoreCase(name)){
@@ -520,6 +584,11 @@ public class University {
 		return null;
 	}
 
+	/**
+	 * Checks if Person exists
+	 * @param id
+	 * @return null or Person
+	 */
 	public Person findPerson(int id) {
 		for(Map.Entry<Integer, Person> entry: people.entrySet()){
 			if(entry.getKey() == id){
@@ -530,6 +599,9 @@ public class University {
 		return null;
 	}
 	
+	/**
+	 * Prints all Students
+	 */
 	public void displayStuds(){
 		System.out.printf("%-10s %-15s %-15s %-5s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL\n");
 		for(Map.Entry<Integer, Person> entry: people.entrySet()){
@@ -539,6 +611,9 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Prints all Admins
+	 */
 	public void displayAdmins(){
 		System.out.printf("%-10s %-15s %-15s %-19s %-14s %-10s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL", "SALARY\n");
 		for(Map.Entry<Integer, Person> entry: people.entrySet()){
@@ -548,6 +623,9 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Prints all Professors
+	 */
 	public void displayProfs(){
 		System.out.printf("%-10s %-15s %-15s %-19s %-5s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL", "SALARY");
 		System.out.println("");
@@ -558,6 +636,9 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Prints all Employees
+	 */
 	public void displayEmps(){
 		System.out.printf("%-10s %-15s %-15s %-19s %-14s", "ID", "FIRST NAME", "LAST NAME", "MIDDLE INITIAL", "SALARY");
 		System.out.println("");
@@ -568,6 +649,9 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Prints all Courses
+	 */
 	public void displayAllCourses(){
 		for(College c: colleges){
 			for(Department d: c.getDepartments()){
@@ -580,6 +664,9 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Prints all Majors
+	 */
 	public void displayAllMajors(){
 		for(College c: colleges){
 			System.out.println("\nMajors in College of " + c.getColName());
@@ -591,6 +678,11 @@ public class University {
 		}
 	}
 	
+	/**
+	 * Checks if Major exists
+	 * @param name
+	 * @return null or Major
+	 */
 	public Major findMajor(String name){
 		for(College c: colleges){
 			for(Department d: c.getDepartments()){
@@ -604,21 +696,11 @@ public class University {
 		return null;
 	}
 	
-	public boolean courseExists(String name){
-		for(College c: colleges){
-			for(Department d: c.getDepartments()){
-				for(Major m: d.getMajors()){
-					for(Course cor: m.getCourses()){
-						if(cor.getName().equalsIgnoreCase(name)){
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
-	}
-	
+	/**
+	 * Checks if Course exists
+	 * @param name
+	 * @return null or Course
+	 */
 	public Course findCourse(String name){
 		for(College c: colleges){
 			for(Department d: c.getDepartments()){
@@ -634,35 +716,42 @@ public class University {
 		return null;
 	}
 	
+	/**
+	 * Assigns Professor to a Course
+	 */
 	public void assignProf(){
 		String name;
 		int id;
 		Professor p;
 		Course c;
-		
+
 		displayAllCourses();
 		do{
-		do{
-			System.out.println("Enter course name:");
-			name = in.nextLine();
-		}while(findCourse(name) == null || findCourse(name).getProf() != null);
-		
-		c = findCourse(name);
-		
-		do{
-			System.out.print("Enter employee ID: ");
-			id = Integer.parseInt(in.nextLine());
-		}while(findPerson(id) == null || !(findPerson(id) instanceof Professor) || isDean(id) == true);
-		
-		p = (Professor) findPerson(id);
-		
-	}while(timeConflict(p, c) == false);
-		
+			do{
+				System.out.println("Enter course name:");
+				name = in.nextLine();
+			}while(findCourse(name) == null || findCourse(name).getProf() != null);
+
+			c = findCourse(name);
+
+			do{
+				System.out.print("Enter employee ID: ");
+				id = Integer.parseInt(in.nextLine());
+			}while(findPerson(id) == null || !(findPerson(id) instanceof Professor) || isDean(id) == true);
+
+			p = (Professor) findPerson(id);
+
+		}while(timeConflict(p, c) == false);
+
 		p.addSession(c);
 		c.addProf(p);
-		
+
 	}
 	
+	/**
+	 * Checks if Student's tuition is paid
+	 * @param _student
+	 */
 	public void isPaid(Student _student) {
 		 if (_student.tuitionPaid())
 		  System.out.println("The student has paid the tuition");
@@ -670,6 +759,9 @@ public class University {
 		  System.out.println("The student has not paid the tuition");
 		}
 	
+	/**
+	 * Checks which Students have paid their tuition
+	 */
 	public void checkTuition(){
 		displayStuds();
 		   System.out.println("Enter the ID of the student you want to check");
@@ -686,6 +778,9 @@ public class University {
 		   isPaid(std);
 	}
 	
+	/**
+	 * Display People menu with various options
+	 */
 	public void peopleMenu(){
 		int choice;
 		do{
@@ -744,9 +839,13 @@ public class University {
 				assignProf();
 			}
 			
-		}while(choice != 10);
-			
+		}while(choice != 10);			
 	}
+	
+	/**
+	 * Sets grade for a Course a Student has taken
+	 * @param _student
+	 */
 	public void setGrade(Student _student) {
 		_student.viewCoursesTaken();
 		System.out.println("Enter the name of the course whose grade you want to modify");
@@ -762,6 +861,9 @@ public class University {
 		_student.setCourse(course);
 	}
 	
+	/**
+	 * Displays College menu with various options
+	 */
 	public void collegeMenu(){
 		int choice;
 		do{
@@ -785,6 +887,9 @@ public class University {
 		}while(choice != 5);
 	}
 
+	/**
+	 * Displays edit College menu with various options
+	 */
 	public void editMenu(){
 		String name;
 		int choice;
