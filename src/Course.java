@@ -48,6 +48,17 @@ public class Course {
 			this.cost = cost;
 		}
 		
+		/**
+		 * Overloaded constructor
+		 * @param corName
+		 * @param cStart
+		 * @param cEnd
+		 * @param corLocation
+		 * @param corSemester
+		 * @param prof
+		 * @param cap
+		 * @param cost
+		 */
 		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, Professor prof, int cap, Double cost) {
 			this.corName = corName;
 			this.cStart = cStart;
@@ -61,6 +72,15 @@ public class Course {
 			this.cost = cost;
 		}
 		
+		/**
+		 * Overloaded constructor
+		 * @param corName
+		 * @param cStart
+		 * @param cEnd
+		 * @param corLocation
+		 * @param corSemester
+		 * @param cap
+		 */
 		Course(String corName, String cStart, String cEnd, String corLocation, String corSemester, int cap) {
 			this.corName = corName;
 			this.cStart = cStart;
@@ -398,36 +418,13 @@ public class Course {
 				System.out.println(s);
 			}
 		}
-
-
-		/*
-		corMenu
-		            	Menu used by admin to edit individual aspects of a course
-		Inputs:
-		            	None
-		Outputs:
-		            	Various menu options to edit the course number 1 - 7
-		Return Value:
-		            	None
-		Exception:
-			OutofBounds - if number inputted is not between 1 and 7'
-			
-					corName - Name of course
-		corStartTime - Time when class meets
-		corEndTime - Time when class ends
-		corLocation - Room and building where class meets
-		corSemester – Semester when class is offered
-		prof – Professor assigned to teach class
-		cap – Maximum number of students that can enroll
-		prereq – List of Courses required before taking this course
-		enrolled – List of students currently enrolled
-		*/
-//		void corMenu(){
-//		
-//		}
 		
 	
-		
+		/**
+		 * Adds student to currently enrolled
+		 * @param s
+		 * @return true or false
+		 */
 		public Boolean addStudent(Student s){
 			if(s.getCurrentUnits() == 20 || enrolled.size() == cap){
 				return false;
@@ -448,10 +445,19 @@ public class Course {
 			}
 		}
 		
+		/**
+		 * Replaces professor 
+		 * @param p
+		 */
 		public void addProf(Professor p){
 			this.prof = p;
 		}
 		
+		
+		/**
+		 * Drops student from currently enrolled
+		 * @param s
+		 */
 		public void dropStudent(Student s){
 			for(Iterator<Student> iter = enrolled.iterator(); iter.hasNext();){
 				Student stud = iter.next();
@@ -461,6 +467,12 @@ public class Course {
 			}
 		}
 		
+		
+		/**
+		 * Checks if student has time conflicts with current schedule
+		 * @param s
+		 * @return true or false
+		 */
 		public boolean timeConflict(Student s){
 			for (Course sCor : s.getCurrentSchedule()) {
 		   			if (sCor.getStartTime().equals(cStart) && sCor.getEndTime().equals(cEnd)
@@ -470,8 +482,11 @@ public class Course {
 		   		}
 			return false;
 		}
-
+		
+		/**
+		 * Prints object info
+		 */
 		public String toString(){
 			return String.format("%-15s", corName);
 		}
-}
+
