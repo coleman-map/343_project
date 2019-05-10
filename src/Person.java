@@ -135,6 +135,10 @@ public class Person {
 			return ID;	
 		}
 		
+		/**
+		 * Allows user to modify values of Person
+		 * @param id
+		 */
 		public void createPerson(int id){
 			System.out.print("Enter first name: ");
 			this.firstName = in.next();
@@ -149,6 +153,9 @@ public class Person {
 			
 		}
 		
+		/**
+		 * Prints object information
+		 */
 		public String toString(){
 			return String.format("%-10s %-15s %-15s %-20s", ID, firstName,  lastName, midIn);
 		}
